@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lr3.práctica2;
+package lr3.pr�ctica2;
 
 /**
  *
  * @author Sofito-Chan
  */
-public class LR3Práctica2 {
+public class practica2 {
 
     /**
      * @param args the command line arguments

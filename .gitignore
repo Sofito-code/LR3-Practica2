@@ -36,3 +36,4 @@ manifest.mf
 .classpath
 *.xml
 *.properties
+/bin/
