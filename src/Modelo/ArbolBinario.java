@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.util.*;
+import java.lang.Math;
 
 /**
  *
@@ -32,7 +33,108 @@ public class ArbolBinario {
     public boolean esVacio() {
         return (raiz == null);
     }
+    
+    public void CArbolBinario(String x, int nivel){
+       List aux=new ArrayList();
+        aux.addAll(Arrays.asList(x.split(",")));
+    	if(aux.size()<nivel) {System.out.print("No puede formarse un arbol"); return;}
+        
+        int maxN=maxNumNodos(nivel);
+	Random r  = new Random();
+	int aux2;
+        NodoDoble aux3;
+	List NodosArbol=new ArrayList();
+        
+        for(int i=0;i<maxN && !aux.isEmpty() ;i++)
+            {aux2=r.nextInt(aux.size());
+             aux3=new NodoDoble(aux.get(aux2));
+             NodosArbol.add(aux3);
+             aux.remove(aux2);
+            }
+        if(NodosArbol.size()<maxN)
+            {   int oSize=NodosArbol.size();
+                int sizecontrol=0;
+                for(int i=0;i<maxN-oSize;i++){NodosArbol.add(null);}
+                
+                for(int i=nivel-1;i>0;i--)
+                    { sizecontrol=(int)Math.pow(2,i)-1;
+                        if(NodosArbol.get(sizecontrol)==null){
+                            
+                            aux3=(NodoDoble)NodosArbol.get(oSize-1);
+                            NodosArbol.remove(oSize-1);
+                            NodosArbol.add(sizecontrol, aux3);
+                            oSize-=1;
+                        }
+                      
+                     
+                    }
+              
+            }
+        int count=1;
+        int index=1;
+        int iHD;
+        int iHI;
+        int i;
+        NodoDoble current;
+        while(count<nivel)
+        {   i=1;
+            while(i<=Math.pow(2,count-1))
+            {current=(NodoDoble)NodosArbol.get(index-1);
+             if(current==null){
+              while(current==null && index-1<NodosArbol.size())
+             {   index+=1;
+                 current=(NodoDoble)NodosArbol.get(index-1);
+             }
+              count+=1;
+              if(count>=nivel){return;}
+             }
+             
+             iHD=((2*index)+1)-1;
+             iHI=(2*index)-1;
+             if(iHD<NodosArbol.size())
+                {aux3=(NodoDoble)NodosArbol.get(iHD);
+                 current.asignaLD(aux3);
+                }
+              if(iHI<NodosArbol.size())
+                {aux3=(NodoDoble)NodosArbol.get(iHI);
+                 current.asignaLI(aux3);
+                }            
+             if(count==1){this.raiz=current;}
+             index+=1;
+             i+=1;
+            }
+           count+=1;
+               
+          
+            
+        }
+        
+                
 
+        
+		
+
+        
+
+        
+
+    }
+    
+   private int maxNumNodos(int nivel)
+    {   int aux=0;
+        if(nivel<=0){return 0;}
+        for(int i=0;i<nivel;i++){
+            int aux2=(int)Math.pow(2,i);
+            aux=aux+aux2;
+        }
+        return aux;
+    } 
+   private ArrayList<String> construyeLista(String[] x)
+    {   ArrayList aux=new ArrayList();
+    aux.addAll(Arrays.asList(x));
+        return aux;
+        
+    }
     public void agregar(Object d) {
         NodoDoble n = new NodoDoble(d);
 
@@ -83,15 +185,15 @@ public class ArbolBinario {
 
     public void mostrar(int opcion) {
         System.out.println();
-        if (opcion == INORDEN) {
+        if (opcion == 0) {
             System.out.println("INORDEN:");
             mostrarInorden(raiz);
         }
-        if (opcion == PREORDEN) {
+        if (opcion == 1) {
             System.out.println("PREORDEN:");
             mostrarPreorden(raiz);
         }
-        if (opcion == POSORDEN) {
+        if (opcion == 2) {
             System.out.println("POSORDEN:");
             mostrarPosorden(raiz);
         }
