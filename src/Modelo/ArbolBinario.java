@@ -34,13 +34,30 @@ public class ArbolBinario {
 
     public void ConstruyeArbolBinario(int cantidadNodos, boolean letras) {
         Random r = new Random();
+        List<Object> nodos = new ArrayList<>();
         if (letras == true) {
             for (int i = 0; i < cantidadNodos; i++) {
-                this.agregar(abc[r.nextInt(25)].toLowerCase());
+                String nodo = abc[r.nextInt(25)].toLowerCase();
+                if(!nodos.contains(nodo)){
+                    this.agregar(nodo);
+                    nodos.add(nodo);
+                }
+                else{
+                    i--;
+                }
+                
             }
         } else {
             for (int i = 0; i < cantidadNodos; i++) {
-                this.agregar(r.nextInt(25));
+                int nodo = r.nextInt(25);
+                if(!nodos.contains(nodo)){
+                    this.agregar(nodo);
+                    nodos.add(nodo);
+                }
+                else{
+                    i--;
+                }
+                
             }
         }
     }
@@ -187,10 +204,10 @@ public class ArbolBinario {
          */
         if (d.hashCode() > q.retornaDato().hashCode()) {
             q.asignaLD(n);
-            System.out.println(n.retornaDato() + "Agregado a la derecha de " + q.retornaDato());
+            System.out.println(n.retornaDato() + " Agregado a la derecha de " + q.retornaDato());
         } else {
             q.asignaLI(n);
-            System.out.println(n.retornaDato() + "Agregado a la izquierda de " + q.retornaDato());
+            System.out.println(n.retornaDato() + " Agregado a la izquierda de " + q.retornaDato());
         }
 
     }

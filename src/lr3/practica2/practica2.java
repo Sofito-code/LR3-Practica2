@@ -15,11 +15,15 @@ public class practica2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ArbolBinario test= new ArbolBinario();
-        String a="A,B,C,D,F,G";
-        test.CArbolBinario(a, 3);
-        int c=test.hojas();
-        System.out.print("ok");
+//        ArbolBinario test= new ArbolBinario();
+//        String a="A,B,C,D,F,G";
+//        test.CArbolBinario(a, 3);
+//        int c=test.hojas();
+//        System.out.print("ok");
+        
+        ArbolBinario A = new ArbolBinario();
+        A.ConstruyeArbolBinario(10, false);
+        A.mostrar(0);
     }
     
 }
