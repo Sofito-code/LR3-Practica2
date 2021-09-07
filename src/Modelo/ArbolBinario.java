@@ -14,7 +14,7 @@ import java.lang.Math;
  */
 public class ArbolBinario {
 
-    private NodoDoble raiz;
+    public NodoDoble raiz;
     private List<NodoDoble> hojas;
     String[] abc = {"A", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
@@ -157,12 +157,7 @@ public class ArbolBinario {
         return aux;
     }
 
-    private ArrayList<String> construyeLista(String[] x) {
-        ArrayList aux = new ArrayList();
-        aux.addAll(Arrays.asList(x));
-        return aux;
-
-    }
+  
 
     public void agregar(Object d) {
         NodoDoble n = new NodoDoble(d);
@@ -317,29 +312,11 @@ public class ArbolBinario {
     }
 
     public List<NodoDoble> nodoshoja() {
-        nhr(raiz);
-        return this.hojas;
+        List c=nhr(raiz);
+        return c;
     }
 
-    public void nhr(NodoDoble x) {
-        if (x == null) {
-            return;
-        }
-        if (x.retornaLD() != null && x.retornaLI() != null) {
-            this.hojas.add(x);
-            return;
-        } else {
-            if (x.retornaLD() != null) {
-                nhr(x.retornaLD());
-            }
-            if (x.retornaLI() != null) {
-                nhr(x.retornaLD());
-            }
-        }
-        return;
-    }
-
-    public List<NodoDoble> nhrv2(NodoDoble x) {
+    public List<NodoDoble> nhr(NodoDoble x) {
         if (x == null) {
             return null;
         }
@@ -348,15 +325,38 @@ public class ArbolBinario {
             Aux.add(x);
         } else {
             if (x.retornaLD() != null) {
-                Aux.addAll(nhrv2(x.retornaLD()));
+                Aux.addAll(nhr(x.retornaLD()));
             }
             if (x.retornaLI() != null) {
-                Aux.addAll(nhrv2(x.retornaLI()));
+                Aux.addAll(nhr(x.retornaLI()));
             }
         }
         return Aux;
     }
-
+    public NodoDoble buscarNodo(String name){
+        Stack x= new Stack();
+        x.add(raiz);
+        NodoDoble current=this.raiz;
+        String aux;
+        while(!x.isEmpty()){
+            current=(NodoDoble)x.pop();
+            aux=(String)current.retornaDato();
+            if(aux.equals(name)){
+                return current;
+            }
+            else{
+                if(current.retornaLD()!=null){
+                    x.remove(current);
+                    x.add(current.retornaLD());
+                }
+                if(current.retornaLI()!=null){
+                    x.remove(current);
+                    x.add(current.retornaLI());
+                }
+            }
+        }
+        return null;
+    }
     public NodoDoble padre(NodoDoble x) {
         if (x == raiz) {
             return raiz;
@@ -397,10 +397,10 @@ public class ArbolBinario {
             return null;
         }
         pc = padre(x);
-        while (pc != raiz) {
+        do {
             aux.add(pc);
             pc = padre(pc);
-        }
+        }while (pc != raiz);
         return aux;
 
     }

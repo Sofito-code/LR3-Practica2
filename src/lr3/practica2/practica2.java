@@ -5,6 +5,7 @@
  */
 package lr3.practica2;
 import Modelo.*;
+import java.util.*;
 /**
  *
  * @author Sofito-Chan
@@ -16,14 +17,21 @@ public class practica2 {
      */
     public static void main(String[] args) {
 //        ArbolBinario test= new ArbolBinario();
-//        String a="A,B,C,D,F,G";
+        String a="A,B,C,D,F,G";
 //        test.CArbolBinario(a, 3);
 //        int c=test.hojas();
 //        System.out.print("ok");
         
         ArbolBinario A = new ArbolBinario();
-        A.ConstruyeArbolBinario(10, false);
+        A.CArbolBinario(a, 3);
         A.mostrar(0);
+        A.altura();
+       
+        NodoDoble x=A.buscarNodo("A");
+        List c=A.ancestros(x);
+    }
+
+        
     }
     
-}
+
