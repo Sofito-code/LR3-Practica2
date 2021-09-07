@@ -15,10 +15,8 @@ import java.lang.Math;
 public class ArbolBinario {
 
     private NodoDoble raiz;
-    public static final int INORDEN = 0;
-    public static final int PREORDEN = 1;
-    public static final int POSORDEN = 2;
     private List<NodoDoble> hojas;
+    String[] abc = {"A", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
     public ArbolBinario() {
         raiz = null;
@@ -32,6 +30,19 @@ public class ArbolBinario {
 
     public boolean esVacio() {
         return (raiz == null);
+    }
+
+    public void ConstruyeArbolBinario(int cantidadNodos, boolean letras) {
+        Random r = new Random();
+        if (letras == true) {
+            for (int i = 0; i < cantidadNodos; i++) {
+                this.agregar(abc[r.nextInt(25)].toLowerCase());
+            }
+        } else {
+            for (int i = 0; i < cantidadNodos; i++) {
+                this.agregar(r.nextInt(25));
+            }
+        }
     }
 
     public void CArbolBinario(String x, int nivel) {
@@ -54,7 +65,7 @@ public class ArbolBinario {
             NodosArbol.add(aux3);
             aux.remove(aux2);
         }
-        
+
         if (NodosArbol.size() < maxN) {
             int oSize = NodosArbol.size();
             int sizecontrol = 0;
@@ -73,7 +84,7 @@ public class ArbolBinario {
                 }
             }
         }
-        
+
         int count = 1;
         int index = 1;
         int iHD;
