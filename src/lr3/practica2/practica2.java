@@ -17,18 +17,20 @@ public class practica2 {
      */
     public static void main(String[] args) {
 //        ArbolBinario test= new ArbolBinario();
-        String a="A,B,C,D,F,G";
+        String a="G,H,O,Q,R,T,X";
+        String b="H,O,R,Q,X,T,G";
 //        test.CArbolBinario(a, 3);
 //        int c=test.hojas();
 //        System.out.print("ok");
         
         ArbolBinario A = new ArbolBinario();
-        A.CArbolBinario(a, 3);
+        //A.ConstruyeArbolBinario(7, true);
+        A.construyeInPos(a, b);
         A.mostrar(0);
+        A.mostrar(2);
         A.altura();
        
-        NodoDoble x=A.buscarNodo("A");
-        List c=A.ancestros(x);
+
     }
 
         

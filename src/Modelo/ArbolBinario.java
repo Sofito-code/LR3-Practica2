@@ -447,4 +447,71 @@ public class ArbolBinario {
         }
         return padre(padre(x));
     }
+    public void construyeInPre(String inorden,String preorden)
+        {   List in= Arrays.asList(inorden.split(","));
+            List pre=Arrays.asList(preorden.split(","));
+            raiz=inpre(in,pre);
+ 
+            
+        }
+    private NodoDoble inpre(List in,List pre)
+        {   NodoDoble x;
+            int i,j,k;
+            String aux1,aux2;
+            List apre,ain;
+            if(in.isEmpty()){return null;}
+            x=new NodoDoble(pre.get(0));
+            k=0;
+            aux1=(String)in.get(0);
+            aux2=(String) pre.get(0);
+            while(!aux1.equals(aux2))
+            {k+=1;
+            aux1=(String)in.get(k);
+            }
+            
+            ain=in.subList(0, k);
+            apre=pre.subList(1, k+1);
+            
+            x.asignaLI(inpre(ain,apre));
+            apre=pre.subList(k+1, in.size());
+            ain=in.subList(k+1, in.size());
+            x.asignaLD(inpre(ain,apre));
+            return x;
+        }
+    public void construyeInPos(String inorden, String posorden)
+        {List in= Arrays.asList(inorden.split(","));
+            List pos=Arrays.asList(posorden.split(","));
+            raiz=inpos(in,pos);
+        }
+    private NodoDoble inpos(List in, List pos)
+        { NodoDoble x;
+          int i,j,k;
+          String aux1,aux2;
+          List ain,apos;
+          if(in.isEmpty()){return null;}
+          x=new NodoDoble(pos.get(pos.size()-1));
+          k=0;
+            aux1=(String)in.get(in.size()-1);
+            aux2=(String) pos.get(pos.size()-1);
+            while(!aux1.equals(aux2))
+            {k+=1;
+            aux1=(String)in.get(in.size()-k);
+            }
+          if(k!=0){
+          apos=pos.subList(pos.size()-k, pos.size()-1);
+          ain=in.subList(in.size()-k+1, in.size());
+              x.asignaLD(inpos(ain,apos));
+          
+          }
+          if(in.size()!=1 && pos.size()!=1){
+              if(k==0)
+              {k+=1;}
+              apos=pos.subList(0,pos.size()-k);
+          ain=in.subList(0, in.size()-k);
+          x.asignaLI(inpos(ain,apos));}
+
+
+          return x;
+        
+        }
 }
