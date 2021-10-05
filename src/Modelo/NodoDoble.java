@@ -13,7 +13,26 @@ public class NodoDoble {
         ligaIzquierda = ligaDerecha = null;
         dato = d;
     }
-    
+    /**
+     * 
+     * @param n
+     * @return 
+     */
+    public int nodoCompletos(NodoDoble n){
+        if(n == null){
+            return 0;
+        }
+        else{
+            if(n.retornaLI() != null && n.retornaLD() != null){
+                return nodoCompletos(n.retornaLI()) + nodoCompletos(n.retornaLD()) + 1;
+            }
+            return nodoCompletos(n.retornaLI()) + nodoCompletos(n.retornaLD());
+        }
+    }
+    /**
+     * 
+     * @return 
+     */
     public int grado() {
         int g = 0;
         if (ligaDerecha != null) {
