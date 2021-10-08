@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package lr3.practica2;
+
 import Modelo.*;
 import java.util.*;
+
 /**
  *
  * @author Sofito-Chan
@@ -17,23 +19,20 @@ public class practica2 {
      */
     public static void main(String[] args) {
 //        ArbolBinario test= new ArbolBinario();
-        String a="G,H,O,Q,R,T,X";
-        String b="H,O,R,Q,X,T,G";
+        String a = "G,H,O,Q,R,T,X";
+        String b = "H,O,R,Q,X,T,G";
 //        test.CArbolBinario(a, 3);
 //        int c=test.hojas();
 //        System.out.print("ok");
-        
+
         ArbolBinario A = new ArbolBinario();
         //A.ConstruyeArbolBinario(7, true);
-        A.construyeInPos(a, b);
-        A.mostrar(0);
-        A.mostrar(2);
-        A.altura();
-       
+        A.ConstruyeArbolBinario2(a);
+        //A.construyeInPos(a, b);
+        A.mostrar(0,A.getRaiz());
+        A.mostrar(2,A.getRaiz());
+        //A.altura();
 
     }
 
-        
-    }
-    
-
+}

@@ -15,23 +15,23 @@ import javax.swing.JFrame;
  */
 public class App2 {
     public static void main(String[] args) {
-        // TODO code application logic here
+        
         //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-        //PATRON MVC
         ArbolBinario a = new ArbolBinario(); //MODELO
-        a.ConstruyeArbolBinario1(10, true);
+        //String in = "b,c,a";
+        //a.ConstruyeArbolBinario2(in);
+        a.ConstruyeArbolBinario1(20, true);
         Lienzo l = new Lienzo(); //VISTA
         ArbolControlador objControlador = new ArbolControlador(a,l); //CONTROLADOR
         //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-        // PINTAR ARBOL
-        
+        // PINTAR ARBOL        
         objControlador.iniciar();
         //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
         //MOSTRAR LIENZO EN UNA VENTANA TODO
         JFrame ventana = new JFrame();
         ventana.getContentPane().add(l);
         ventana.setDefaultCloseOperation(3);
-        ventana.setSize(600, 600);
+        ventana.setSize(1200, 700);
         ventana.setVisible(true);
         //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
     }

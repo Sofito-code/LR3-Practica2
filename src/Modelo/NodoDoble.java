@@ -13,25 +13,35 @@ public class NodoDoble {
         ligaIzquierda = ligaDerecha = null;
         dato = d;
     }
+    
     /**
-     * 
-     * @param n
-     * @return 
-     */
-    public int nodoCompletos(NodoDoble n){
-        if(n == null){
+     * Este método verifica si un nodo es completo, osea si tiene hijo izquierdo y derecho.
+     * De manera recursiva tambien recorre el arbol verificando si los hijos del nodo que llamo el método son completos.
+     * @return un número entero que indica cuantos nodos son completos.
+     */        
+    public int nodoCompletos(){
+        if(this == null){
             return 0;
         }
         else{
-            if(n.retornaLI() != null && n.retornaLD() != null){
-                return nodoCompletos(n.retornaLI()) + nodoCompletos(n.retornaLD()) + 1;
+            if(this.retornaLI() != null && this.retornaLD() != null){
+                return this.retornaLI().nodoCompletos() + this.retornaLD().nodoCompletos() + 1;
             }
-            return nodoCompletos(n.retornaLI()) + nodoCompletos(n.retornaLD());
+            if(this.retornaLI() == null){
+                return 0;
+            }
+            else if(this.retornaLD() == null){
+                return 0;
+            }
+            else{
+                return this.retornaLI().nodoCompletos() + this.retornaLD().nodoCompletos();
+            }            
         }
     }
+    
     /**
-     * 
-     * @return 
+     * Calcula el grado del nodo que llame el método.
+     * @return el grado del nodo en un entero.
      */
     public int grado() {
         int g = 0;

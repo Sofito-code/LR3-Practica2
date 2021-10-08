@@ -19,7 +19,7 @@ public class Lienzo extends JPanel {
     private ArbolBinario arbol = new ArbolBinario();
     public static final int DIAMETRO = 30;
     public static final int RADIO = DIAMETRO / 2;
-    public static final int ANCHO = 50;
+    public static final int ANCHO = 60;
 
     public void setArbol(ArbolBinario arbol) {
         this.arbol = arbol;
@@ -33,9 +33,9 @@ public class Lienzo extends JPanel {
     
     private void pintar(Graphics g, int x, int y, NodoDoble n){
         if(n != null){
-            int EXTRA = n.nodoCompletos(n) * (ANCHO/2);
+            int EXTRA = n.nodoCompletos() * (ANCHO/2);
             g.drawOval(x, y, DIAMETRO, DIAMETRO);
-            g.drawString(n.retornaDato().toString(), x + 12, y + 18);
+            g.drawString(n.retornaDato().toString(), x + 11, y + 20);
             if (n.retornaLI() != null){
                 g.drawLine(x + RADIO, y + DIAMETRO, x - ANCHO - EXTRA + RADIO, y + ANCHO);
             }

@@ -20,7 +20,9 @@ public class ArbolControlador {
         this.arbol = arbol;
         this.lienzo = lienzo;
     }
-
+    /**
+     * Este método le asigna el arbol a el lienzo para pintarlo.
+     */
     public void iniciar() {
         lienzo.setArbol(arbol);
     }
