@@ -98,8 +98,7 @@ public class ArbolBinario {
          * la raíz.
          * 
          */
-        if (esVacio()) {
-            System.out.println("No existían más nodos.");
+        if (esVacio()) {            
             raiz = n;
             return;
         }
@@ -111,7 +110,6 @@ public class ArbolBinario {
          */
         while (p != null) {
             if ((Object) p.retornaDato() == d) {
-                System.out.println("Dato ya existe");
                 return;
             }
             q = p;
@@ -127,11 +125,9 @@ public class ArbolBinario {
          * 
          */
         if (d.hashCode() > q.retornaDato().hashCode()) {
-            q.asignaLD(n);
-            System.out.println(n.retornaDato() + " Agregado a la derecha de " + q.retornaDato());
+            q.asignaLD(n);            
         } else {
-            q.asignaLI(n);
-            System.out.println(n.retornaDato() + " Agregado a la izquierda de " + q.retornaDato());
+            q.asignaLI(n);            
         }
     }
 
@@ -146,15 +142,15 @@ public class ArbolBinario {
     public void mostrar(int opcion, NodoDoble n) {
         System.out.println();
         if (opcion == 0) {
-            System.out.println("INORDEN:");
+            //INORDEN
             mostrarInorden(n);
         }
         if (opcion == 1) {
-            System.out.println("PREORDEN:");
+            //PREORDEN
             mostrarPreorden(n);
         }
         if (opcion == 2) {
-            System.out.println("POSORDEN:");
+            //POSORDEN
             mostrarPosorden(n);
         }
     }

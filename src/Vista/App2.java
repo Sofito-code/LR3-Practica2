@@ -7,6 +7,7 @@ package Vista;
 
 import Controlador.ArbolControlador;
 import Modelo.ArbolBinario;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 
 /**
@@ -17,19 +18,21 @@ public class App2 {
     public static void main(String[] args) {
         
         //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
-        ArbolBinario a = new ArbolBinario(); //MODELO
-        //String in = "b,c,a";
-        //a.ConstruyeArbolBinario2(in);
-        a.ConstruyeArbolBinario1(20, true);
-        Lienzo l = new Lienzo(); //VISTA
-        ArbolControlador objControlador = new ArbolControlador(a,l); //CONTROLADOR
+        String in = "b,c,a";
+        String aa = "G,H,O,Q,R,T,X";
+        String bb = "H,O,R,Q,X,T,G";
+        ArbolBinario arbol = new ArbolBinario(); //MODELO        
+        //arbol.ConstruyeArbolBinario2(in);        
+        arbol.ConstruyeArbolBinario1(10, true);
+        Lienzo lienzo = new Lienzo(); //VISTA
+        ArbolControlador objControlador = new ArbolControlador(arbol,lienzo); //CONTROLADOR
         //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
         // PINTAR ARBOL        
         objControlador.iniciar();
         //= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
         //MOSTRAR LIENZO EN UNA VENTANA TODO
         JFrame ventana = new JFrame();
-        ventana.getContentPane().add(l);
+        ventana.add(lienzo);
         ventana.setDefaultCloseOperation(3);
         ventana.setSize(1200, 700);
         ventana.setVisible(true);
