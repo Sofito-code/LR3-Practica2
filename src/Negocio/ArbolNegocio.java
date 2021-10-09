@@ -13,10 +13,13 @@ import java.util.Queue;
  *
  * @author Sofito-Chan
  */
-public class Negocio {
+public class ArbolNegocio {
+
+    public ArbolNegocio() {
+    }   
     
     public boolean verificarCantidadNodos(int n){
-        if(n > 0 && n <= 25){
+        if(n > 0 && n <= 20){
             return true;
         }
         return false;        

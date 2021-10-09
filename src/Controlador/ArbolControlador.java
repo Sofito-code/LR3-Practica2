@@ -15,10 +15,12 @@ import Vista.Lienzo;
 public class ArbolControlador {
     private ArbolBinario arbol;
     private Lienzo lienzo;
+    boolean aleatorio;
 
     public ArbolControlador(ArbolBinario arbol, Lienzo lienzo) {
         this.arbol = arbol;
         this.lienzo = lienzo;
+        this.aleatorio = false;
     }
     
     /**
@@ -27,4 +29,9 @@ public class ArbolControlador {
     public void iniciar() {
         lienzo.setArbol(arbol);
     }   
+
+    public Lienzo getLienzo() {
+        return lienzo;
+    }
+    
 }

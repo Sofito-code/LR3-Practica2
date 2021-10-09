@@ -320,18 +320,19 @@ public class ArbolBinario {
         if (x == null) {
             return null;
         }
-        List<NodoDoble> Aux = new ArrayList();
+        List<NodoDoble> aux = new ArrayList();
         if (x.retornaLD() == null && x.retornaLI() == null) {
-            Aux.add(x);
+            aux.add(x);
         } else {
             if (x.retornaLD() != null) {
-                Aux.addAll(nhr(x.retornaLD()));
+                aux.addAll(nhr(x.retornaLD()));
             }
             if (x.retornaLI() != null) {
-                Aux.addAll(nhr(x.retornaLI()));
+                aux.addAll(nhr(x.retornaLI()));
             }
         }
-        return Aux;
+        hojas = aux;
+        return aux;
     }
 
     /**

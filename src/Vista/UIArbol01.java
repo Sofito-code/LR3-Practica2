@@ -7,25 +7,23 @@ package Vista;
 
 import Controlador.ArbolControlador;
 import Modelo.ArbolBinario;
-import Negocio.Negocio;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+import java.awt.Toolkit;
 
 /**
  *
  * @author Sofito-Chan
  */
-public class ingresarArbol extends javax.swing.JFrame {
+public class UIArbol01 extends javax.swing.JFrame {
 
     /**
      * Creates new form ingresarArbol
      */
-    public ingresarArbol() {
-        setIconImage(new ImageIcon(getClass().getResource("/vista/codeIcon.png")).getImage()); //para el icono de la ventana
-        ArbolBinario a = new ArbolBinario();
-        arbol = a;
+    public UIArbol01() {
+        arbol = new ArbolBinario();
+        lienzo = new Lienzo();
+        control = new ArbolControlador(arbol, lienzo);
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("codeIcon.png")));
     }
 
     /**
@@ -37,7 +35,6 @@ public class ingresarArbol extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         panel = new javax.swing.JPanel();
         enunciado = new javax.swing.JLabel();
         buttonCantiNodos = new javax.swing.JButton();
@@ -46,9 +43,9 @@ public class ingresarArbol extends javax.swing.JFrame {
         buttonCInPos = new javax.swing.JButton();
         labelFirma = new javax.swing.JLabel();
 
-        jButton1.setText("jButton1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Segunda Práctica - Lógica 3");
+        setResizable(false);
 
         panel.setBackground(new java.awt.Color(204, 255, 204));
 
@@ -77,10 +74,20 @@ public class ingresarArbol extends javax.swing.JFrame {
         buttonInPre.setBackground(new java.awt.Color(102, 255, 102));
         buttonInPre.setForeground(new java.awt.Color(0, 0, 0));
         buttonInPre.setText("Recorridos Inorden y Preorden");
+        buttonInPre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonInPreActionPerformed(evt);
+            }
+        });
 
         buttonCInPos.setBackground(new java.awt.Color(102, 255, 102));
         buttonCInPos.setForeground(new java.awt.Color(0, 0, 0));
         buttonCInPos.setText("Recorridos Inorden y Posorden");
+        buttonCInPos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCInPosActionPerformed(evt);
+            }
+        });
 
         labelFirma.setForeground(new java.awt.Color(0, 51, 0));
         labelFirma.setText("John Rodriguez y Sofia Vanegas - Segunda Práctica - Lógica 3");
@@ -140,45 +147,53 @@ public class ingresarArbol extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCantiNodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCantiNodosActionPerformed
-        Negocio negocio = new Negocio();
-        int n = 0;
-        try{
-            n = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Elige un número de nodos (Mín: 1, Max: 25)", "Cantidad de nodos", 3));
-            if (!negocio.verificarCantidadNodos(n)){
-                JOptionPane.showMessageDialog(rootPane, "El número no es válido.");
-                return;
-            }
-        }
-        catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(rootPane, "Por favor coloque valores númericos válidos", "Error", 2);
-            return;
-        }        
-        int f = JOptionPane.showConfirmDialog(rootPane, "¿Quiere identificar los nodos con letras?");
-        switch(f){
-            //si
-            case 0:
-                arbol.ConstruyeArbolBinario1(n, true);
-                break;
-            //no
-            case 1:
-                arbol.ConstruyeArbolBinario1(n, false);
-                break;
-            case 2:
-                return;
-        }
-        Vista vista = new Vista(arbol);
-        vista.setVisible(true);
-        this.setVisible(false);
+//        ArbolNegocio negocio = new ArbolNegocio();
+//        
+//        try{
+//            n = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Elige un número de nodos (Mín: 1, Max: 20)", "Cantidad de nodos", 3));
+//            if (!negocio.verificarCantidadNodos(n)){
+//                JOptionPane.showMessageDialog(rootPane, "El número no es válido.");
+//                return;
+//            }
+//        }
+//        catch(NumberFormatException e){
+//            JOptionPane.showMessageDialog(rootPane, "Por favor coloque valores númericos válidos", "Error", 2);
+//            return;
+//        }        
+//        int f = JOptionPane.showConfirmDialog(rootPane, "¿Quiere identificar los nodos con letras?");
+//        switch(f){
+//            //si
+//            case 0:
+//                arbol.ConstruyeArbolBinario1(n, true);
+//                break;
+//            //no
+//            case 1:
+//                arbol.ConstruyeArbolBinario1(n, false);
+//                break;
+//            case 2:
+//                return;
+//        }
+
+        arbol.ConstruyeArbolBinario1(size, true);
+        lienzo();
     }//GEN-LAST:event_buttonCantiNodosActionPerformed
 
     private void buttonStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStringActionPerformed
-        String arbolB = JOptionPane.showInputDialog(rootPane, "Ingrese los nombres de los nodos separados por comas (Max: 25 nodos)", "Nodos separados por comas", 3);
-        arbol.ConstruyeArbolBinario2(arbolB); 
-        Vista vista = new Vista();
-        vista.setArbol(arbol);
-        vista.setVisible(true);
-        this.setVisible(false);        
+        //String arbolB = JOptionPane.showInputDialog(rootPane, "Ingrese los nombres de los nodos separados por comas (Max: 25 nodos)", "Nodos separados por comas", 3);
+        arbol.ConstruyeArbolBinario2(arbolB);
+        lienzo();
+
     }//GEN-LAST:event_buttonStringActionPerformed
+
+    private void buttonCInPosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCInPosActionPerformed
+        arbol.construyeInPos(in, pos);
+        lienzo();
+    }//GEN-LAST:event_buttonCInPosActionPerformed
+
+    private void buttonInPreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInPreActionPerformed
+        arbol.construyeInPre(in, pre);
+        lienzo();
+    }//GEN-LAST:event_buttonInPreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,34 +212,55 @@ public class ingresarArbol extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ingresarArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIArbol01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ingresarArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIArbol01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ingresarArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIArbol01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ingresarArbol.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UIArbol01.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ingresarArbol().setVisible(true);
+                new UIArbol01().setVisible(true);
             }
         });
-    }   
+    }
     
-    private ArbolBinario arbol; //MODELO       
+    
+    public void setControl(ArbolControlador control) {
+        this.control = control;
+    }
+        
+    public void lienzo() {        
+        UIArbol02 lienzo = new UIArbol02();
+        lienzo.setControl(control);
+        lienzo.dibujarArbol();
+        lienzo.setVisible(true);
+        this.setVisible(false);
+    }
+    
+    String in = "G,H,O,Q,R,T,X";
+    String pos = "H,O,R,Q,X,T,G";
+    String pre = "G,T,Q,O,H,R,X";
+    String arbolB = "k,j,b,i,h,g,a,c,e,d,f";
+    int size = 20;
+    private ArbolBinario arbol; //MODELO
+    private Lienzo lienzo; //PANEL-ARBOL
+    private ArbolControlador control; //CONTROLADOR
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCInPos;
     private javax.swing.JButton buttonCantiNodos;
     private javax.swing.JButton buttonInPre;
     private javax.swing.JButton buttonString;
     private javax.swing.JLabel enunciado;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel labelFirma;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
-
 }
