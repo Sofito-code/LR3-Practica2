@@ -1,8 +1,10 @@
 package Modelo;
 
 /**
- *
+ * Esta clase crea la estructura de un nodo con dos ligas.
+ * 
  * @author Sofito-Chan
+ * @author JohnDRD
  */
 public class NodoDoble {
 
@@ -14,14 +16,10 @@ public class NodoDoble {
         dato = d;
     }
 
-    @Override
-    public String toString() {
-        return String.valueOf(dato);
-    }
-    
     /**
      * Este método verifica si un nodo es completo, osea si tiene hijo izquierdo y derecho.
      * De manera recursiva tambien recorre el arbol verificando si los hijos del nodo que llamo el método son completos.
+     * 
      * @return un número entero que indica cuantos nodos son completos.
      */        
     public int nodoCompletos(){
@@ -45,8 +43,9 @@ public class NodoDoble {
     }
     
     /**
-     * Calcula el grado del nodo que llame el método.
-     * @return el grado del nodo en un entero.
+     * Calcula el grado de un nodo.
+     * 
+     * @return un número entero con el grado del nodo.
      */
     public int grado() {
         int g = 0;
@@ -82,4 +81,10 @@ public class NodoDoble {
     public NodoDoble retornaLI(){
         return ligaIzquierda;
     }
+    
+    @Override
+    public String toString() {
+        return String.valueOf(dato);
+    }
+    
 }

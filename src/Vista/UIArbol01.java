@@ -9,18 +9,17 @@ import Controlador.ArbolControlador;
 import Modelo.ArbolBinario;
 import Negocio.ArbolNegocio;
 import java.awt.Toolkit;
-import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
 /**
+ * Esta clase es la primera ventana del programa donde se pide que se cree un
+ * arbol con diferentes opciones de ingreso.
  *
  * @author Sofito-Chan
+ * @author JohnDRD
  */
 public class UIArbol01 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ingresarArbol
-     */
     public UIArbol01() {
         arbol = new ArbolBinario();
         lienzo = new Lienzo();
@@ -45,7 +44,7 @@ public class UIArbol01 extends javax.swing.JFrame {
         buttonInPre = new javax.swing.JButton();
         buttonCInPos = new javax.swing.JButton();
         labelFirma = new javax.swing.JLabel();
-        Logo = new javax.swing.JLabel();
+        logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Segunda Práctica - Lógica 3");
@@ -98,10 +97,10 @@ public class UIArbol01 extends javax.swing.JFrame {
         labelFirma.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFirma.setText("John Rodriguez y Sofia Vanegas - Segunda Práctica - Lógica 3");
 
-        Logo.setBackground(new java.awt.Color(204, 255, 204));
-        Logo.setForeground(new java.awt.Color(204, 255, 204));
-        Logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Logo.png"))); // NOI18N
+        logo.setBackground(new java.awt.Color(204, 255, 204));
+        logo.setForeground(new java.awt.Color(204, 255, 204));
+        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Logo.png"))); // NOI18N
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -112,10 +111,9 @@ public class UIArbol01 extends javax.swing.JFrame {
                     .addComponent(enunciado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(labelFirma, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)))
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelFirma, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(74, 74, 74)
@@ -130,7 +128,7 @@ public class UIArbol01 extends javax.swing.JFrame {
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(enunciado)
                 .addGap(18, 18, 18)
@@ -146,7 +144,7 @@ public class UIArbol01 extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        Logo.getAccessibleContext().setAccessibleName("Logo");
+        logo.getAccessibleContext().setAccessibleName("Logo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,14 +165,14 @@ public class UIArbol01 extends javax.swing.JFrame {
         int n;
         try {
             n = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Elige un número de nodos (Mín: 1, Max: 20): ", "Cantidad de nodos", 3));
-            if (!negocio.verificarCantidadNodos(n)) {
-                JOptionPane.showMessageDialog(rootPane, "El número no es válido.");
-                return;
-            }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "Por favor coloque valores númericos válidos.", "Error", 2);
             return;
         } catch (NullPointerException e) {
+            return;
+        }
+        if (!negocio.verificarCantidadNodos(n)) {
+            JOptionPane.showMessageDialog(rootPane, "El número no es válido.");
             return;
         }
         int f = 3;
@@ -208,14 +206,14 @@ public class UIArbol01 extends javax.swing.JFrame {
 
         } catch (Exception e) {
             return;
-        }        
+        }
         arbol.ConstruyeArbolBinario2(arbolB);
         lienzo();
-        if(negocio.verificarLongitud(arbolB)){
+        if (negocio.verificarLongitud(arbolB)) {
             arbol.ConstruyeArbolBinario2(arbolB);
             lienzo();
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");            
+            JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");
         }
     }//GEN-LAST:event_buttonStringActionPerformed
 
@@ -229,11 +227,11 @@ public class UIArbol01 extends javax.swing.JFrame {
         } catch (Exception e) {
             return;
         }
-        if(negocio.verificarLongitud(in, pos)){
+        if (negocio.verificarLongitud(in, pos)) {
             arbol.construyeInPos(in, pos);
             lienzo();
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");            
+            JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");
         }
     }//GEN-LAST:event_buttonCInPosActionPerformed
 
@@ -247,12 +245,12 @@ public class UIArbol01 extends javax.swing.JFrame {
         } catch (Exception e) {
             return;
         }
-        if(negocio.verificarLongitud(in, pre)){
+        if (negocio.verificarLongitud(in, pre)) {
             arbol.construyeInPre(in, pre);
             lienzo();
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");            
-        }        
+            JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");
+        }
     }//GEN-LAST:event_buttonInPreActionPerformed
 
     /**
@@ -309,13 +307,13 @@ public class UIArbol01 extends javax.swing.JFrame {
     private Lienzo lienzo; //PANEL-ARBOL
     private ArbolControlador control; //CONTROLADOR
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Logo;
     private javax.swing.JButton buttonCInPos;
     private javax.swing.JButton buttonCantiNodos;
     private javax.swing.JButton buttonInPre;
     private javax.swing.JButton buttonString;
     private javax.swing.JLabel enunciado;
     private javax.swing.JLabel labelFirma;
+    private javax.swing.JLabel logo;
     private javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }

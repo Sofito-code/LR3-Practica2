@@ -19,12 +19,10 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Sofito-Chan
+ * @author JohnDRD
  */
 public class UIArbol02 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Vista
-     */
     public UIArbol02() {
         initComponents();
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("codeIcon.png")));
@@ -39,15 +37,15 @@ public class UIArbol02 extends javax.swing.JFrame {
     }
 
     private void internalFrame() {
-        Rectangle tamaño = InternalFrameArbol.getBounds();
-        this.InternalFrameArbol = null;
-        this.InternalFrameArbol = new JInternalFrame("Arbol Binario", false);
-        this.panelArbol.add(InternalFrameArbol, JLayeredPane.DEFAULT_LAYER);
-        this.InternalFrameArbol.setToolTipText("Mueveme desde el titulo Arbol Binario");
-        this.InternalFrameArbol.setVisible(true);
-        this.InternalFrameArbol.setBounds(tamaño);
-        this.InternalFrameArbol.setEnabled(false);
-        this.InternalFrameArbol.add(control.getLienzo(), BorderLayout.CENTER);
+        Rectangle tamaño = internalFrameArbol.getBounds();
+        this.internalFrameArbol = null;
+        this.internalFrameArbol = new JInternalFrame("Arbol Binario", false);
+        this.panelArbol.add(internalFrameArbol, JLayeredPane.DEFAULT_LAYER);
+        this.internalFrameArbol.setToolTipText("Mueveme desde el titulo Arbol Binario");
+        this.internalFrameArbol.setVisible(true);
+        this.internalFrameArbol.setBounds(tamaño);
+        this.internalFrameArbol.setEnabled(false);
+        this.internalFrameArbol.add(control.getLienzo(), BorderLayout.CENTER);
     }
 
     /**
@@ -60,15 +58,15 @@ public class UIArbol02 extends javax.swing.JFrame {
     private void initComponents() {
 
         panelArbol = new javax.swing.JPanel();
-        InternalFrameArbol = new javax.swing.JInternalFrame();
+        internalFrameArbol = new javax.swing.JInternalFrame();
         panel = new javax.swing.JPanel();
         buttonDetallesArbol = new javax.swing.JButton();
         buttonNuevoArbol = new javax.swing.JButton();
         buttonDetallesNodo = new javax.swing.JButton();
         buttonRecorridos = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        Consola = new javax.swing.JTextArea();
+        opciones = new javax.swing.JLabel();
+        consolaScroll = new javax.swing.JScrollPane();
+        consola = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Segunda Práctica - Lógica 3");
@@ -81,24 +79,24 @@ public class UIArbol02 extends javax.swing.JFrame {
         panelArbol.setEnabled(false);
         panelArbol.setPreferredSize(new java.awt.Dimension(700, 400));
 
-        InternalFrameArbol.setBackground(new java.awt.Color(255, 255, 255));
-        InternalFrameArbol.setBorder(null);
-        InternalFrameArbol.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        InternalFrameArbol.setForeground(new java.awt.Color(255, 255, 255));
-        InternalFrameArbol.setTitle("Arbol Binario");
-        InternalFrameArbol.setToolTipText("");
-        InternalFrameArbol.setAutoscrolls(true);
-        InternalFrameArbol.setPreferredSize(new java.awt.Dimension(800, 400));
-        InternalFrameArbol.setVisible(true);
+        internalFrameArbol.setBackground(new java.awt.Color(255, 255, 255));
+        internalFrameArbol.setBorder(null);
+        internalFrameArbol.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        internalFrameArbol.setForeground(new java.awt.Color(255, 255, 255));
+        internalFrameArbol.setTitle("Arbol Binario");
+        internalFrameArbol.setToolTipText("");
+        internalFrameArbol.setAutoscrolls(true);
+        internalFrameArbol.setPreferredSize(new java.awt.Dimension(800, 400));
+        internalFrameArbol.setVisible(true);
 
-        javax.swing.GroupLayout InternalFrameArbolLayout = new javax.swing.GroupLayout(InternalFrameArbol.getContentPane());
-        InternalFrameArbol.getContentPane().setLayout(InternalFrameArbolLayout);
-        InternalFrameArbolLayout.setHorizontalGroup(
-            InternalFrameArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout internalFrameArbolLayout = new javax.swing.GroupLayout(internalFrameArbol.getContentPane());
+        internalFrameArbol.getContentPane().setLayout(internalFrameArbolLayout);
+        internalFrameArbolLayout.setHorizontalGroup(
+            internalFrameArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 822, Short.MAX_VALUE)
         );
-        InternalFrameArbolLayout.setVerticalGroup(
-            InternalFrameArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        internalFrameArbolLayout.setVerticalGroup(
+            internalFrameArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
@@ -107,12 +105,12 @@ public class UIArbol02 extends javax.swing.JFrame {
         panelArbolLayout.setHorizontalGroup(
             panelArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelArbolLayout.createSequentialGroup()
-                .addComponent(InternalFrameArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(internalFrameArbol, javax.swing.GroupLayout.PREFERRED_SIZE, 822, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         panelArbolLayout.setVerticalGroup(
             panelArbolLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(InternalFrameArbol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+            .addComponent(internalFrameArbol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
         );
 
         panel.setBackground(new java.awt.Color(204, 255, 204));
@@ -158,22 +156,22 @@ public class UIArbol02 extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 51, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("OPCIONES");
+        opciones.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        opciones.setForeground(new java.awt.Color(0, 51, 0));
+        opciones.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        opciones.setText("OPCIONES");
 
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        consolaScroll.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        Consola.setEditable(false);
-        Consola.setBackground(new java.awt.Color(255, 255, 255));
-        Consola.setColumns(20);
-        Consola.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Consola.setForeground(new java.awt.Color(0, 0, 0));
-        Consola.setRows(5);
-        Consola.setAutoscrolls(false);
-        Consola.setFocusable(false);
-        jScrollPane1.setViewportView(Consola);
+        consola.setEditable(false);
+        consola.setBackground(new java.awt.Color(255, 255, 255));
+        consola.setColumns(20);
+        consola.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        consola.setForeground(new java.awt.Color(0, 0, 0));
+        consola.setRows(5);
+        consola.setAutoscrolls(false);
+        consola.setFocusable(false);
+        consolaScroll.setViewportView(consola);
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -186,15 +184,15 @@ public class UIArbol02 extends javax.swing.JFrame {
                     .addComponent(buttonDetallesNodo, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                     .addComponent(buttonNuevoArbol, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(buttonRecorridos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(opciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(consolaScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(opciones)
                 .addGap(18, 18, 18)
                 .addComponent(buttonNuevoArbol)
                 .addGap(18, 18, 18)
@@ -204,7 +202,7 @@ public class UIArbol02 extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(buttonDetallesNodo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
+                .addComponent(consolaScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -231,12 +229,14 @@ public class UIArbol02 extends javax.swing.JFrame {
     private void buttonDetallesArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDetallesArbolActionPerformed
         detallesArbol();
     }//GEN-LAST:event_buttonDetallesArbolActionPerformed
-    private void detallesArbol() {
+    
+    private void detallesArbol() {        
+    String detallesArbol = "";
         detallesArbol = "Detalles del arbol\n\nAltura: " + arbol.altura() + "\nGrado: "
                 + arbol.grado() + "\nNúmero de hojas: " + arbol.hojas() + "\nHojas: " 
                 + arbol.listaNodoToString(arbol.nodosHoja());
-        Consola.setText("");
-        Consola.setText(detallesArbol);
+        consola.setText("");
+        consola.setText(detallesArbol);
     }
     private void buttonNuevoArbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNuevoArbolActionPerformed
         UIArbol01 menu = new UIArbol01();
@@ -301,7 +301,7 @@ public class UIArbol02 extends javax.swing.JFrame {
                 }             
             }
             
-            //ancestros            
+            //Ancestros            
             ancestros += "\nAncestros: ";
             List<NodoDoble> ancest = arbol.ancestros(nodo);
             
@@ -314,7 +314,7 @@ public class UIArbol02 extends javax.swing.JFrame {
                 ancestros += ancest.toString();
             }
             
-            //tio
+            //Tio
             tio = "\nTio: ";
             if(arbol.tio(nodo) == null){
                 tio += "No tiene tio";
@@ -322,7 +322,7 @@ public class UIArbol02 extends javax.swing.JFrame {
                 tio += arbol.tio(nodo);
             }
             
-            //abuelo
+            //Abuelo
             abuelo += "\nAbuelo: ";
             if(arbol.abuelo(nodo) == null || arbol.abuelo(nodo).equals(nodo) || arbol.abuelo(nodo).equals(padreNodo)){
                 abuelo += "No tiene abuelo";
@@ -330,10 +330,10 @@ public class UIArbol02 extends javax.swing.JFrame {
                 abuelo += arbol.abuelo(nodo);
             }
 
-            //impresion
-            Consola.setText("");
+            //Impresion
+            consola.setText("");
             detalles = hijos + hermano + padre + ancestros + tio + abuelo;
-            Consola.setText(detalles);
+            consola.setText(detalles);
         }
     }//GEN-LAST:event_buttonDetallesNodoActionPerformed
 
@@ -354,8 +354,8 @@ public class UIArbol02 extends javax.swing.JFrame {
         } else {
             arbol.limpiarRecorridos();
             recorridos = in + arbol.recorridoIn(nodo) + "\n\n" + pre + arbol.recorridoPre(nodo) + "\n\n" + pos + arbol.recorridoPos(nodo);
-            Consola.setText("");
-            Consola.setText(recorridos);
+            consola.setText("");
+            consola.setText(recorridos);
         }
     }//GEN-LAST:event_buttonRecorridosActionPerformed
 
@@ -396,22 +396,20 @@ public class UIArbol02 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea Consola;
-    private javax.swing.JInternalFrame InternalFrameArbol;
     private javax.swing.JButton buttonDetallesArbol;
     private javax.swing.JButton buttonDetallesNodo;
     private javax.swing.JButton buttonNuevoArbol;
     private javax.swing.JButton buttonRecorridos;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea consola;
+    private javax.swing.JScrollPane consolaScroll;
+    private javax.swing.JInternalFrame internalFrameArbol;
+    private javax.swing.JLabel opciones;
     private javax.swing.JPanel panel;
     private javax.swing.JPanel panelArbol;
     // End of variables declaration//GEN-END:variables
 
-    private ArbolControlador control; //CONTROL
+    private ArbolControlador control;
     private ArbolBinario arbol;
-    private String detallesArbol = "";
-    private String resorridos = "";
 
     public void setControl(ArbolControlador control) {
         this.control = control;

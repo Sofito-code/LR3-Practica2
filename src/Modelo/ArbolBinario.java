@@ -8,7 +8,8 @@ package Modelo;
 import java.util.*;
 
 /**
- *
+ * Esta clase crea la estructura de un árbol binario.
+ * 
  * @author Sofito-Chan
  * @author JohnDRD
  */
@@ -20,9 +21,6 @@ public class ArbolBinario {
     List<String> pos = new LinkedList<>();
     String[] abc = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
-    /**
-     * Constructor del objeto Arbol vacio.
-     */
     public ArbolBinario() {
         raiz = null;
     }
@@ -30,14 +28,20 @@ public class ArbolBinario {
     public ArbolBinario(NodoDoble x) {
         raiz = x;
     }
+    
+    public NodoDoble getRaiz() {
+        return raiz;
+    }
+
+    public boolean esVacio() {
+        return (raiz == null);
+    }
 
     /**
-     * Construye un arbol binario aleatorio un numero de nodos, puede usar
-     * numeros aleatorios o letras para construirse marcando el parametro letras
-     * false para numeros, true para usar letras.
+     * Construye un árbol binario aleatorio con letras o números. 
      *
-     * @param cantidadNodos
-     * @param letras
+     * @param cantidadNodos es el número de nodos que tendrá el árbol binario.
+     * @param letras false para usar números, true para usar letras.
      */
     public void ConstruyeArbolBinario1(int cantidadNodos, boolean letras) {
         Random r = new Random();
@@ -66,9 +70,9 @@ public class ArbolBinario {
     }
 
     /**
-     *
-     * @param x
-     *
+     * Construye un árbol binario a partir de un string.
+     * 
+     * @param x es un string de nodos separados por comas.
      */
     public void ConstruyeArbolBinario2(String x) {
         Queue<String> cola = new LinkedList();
@@ -78,18 +82,10 @@ public class ArbolBinario {
         }
     }
 
-    public NodoDoble getRaiz() {
-        return raiz;
-    }
-
-    public boolean esVacio() {
-        return (raiz == null);
-    }
-
     /**
-     * añade a un arbol binario un elemento d, que no esté presente en el arbol
+     * Añade un elemento d a un arbol binario que no esté presente en el arbol.
      *
-     * @param d
+     * @param d es el nombre del nodo.
      */
     public void agregar(Object d) {
         NodoDoble n = new NodoDoble(d);
@@ -130,7 +126,13 @@ public class ArbolBinario {
             q.asignaLI(n);
         }
     }
-
+    
+    /**
+     * Construye una lista con el recorrido inorden desde un nodo que pertenezca al árbol.
+     * 
+     * @param x nodo "raiz" del recorrido.
+     * @return una lista de strings con el recorrido inorden.
+     */
     public List<String> recorridoIn(NodoDoble x) {
         if (x != null) {
             recorridoIn(x.retornaLI());
@@ -139,7 +141,13 @@ public class ArbolBinario {
         }
         return in;
     }
-
+    
+    /**
+     * Construye una lista con el recorrido preorden desde un nodo que pertenezca al árbol.
+     * 
+     * @param x nodo "raiz" del recorrido.
+     * @return una lista de strings con el recorrido preorden.
+     */
     public List<String> recorridoPre(NodoDoble x) {
         if (x != null) {
             pre.add(x.retornaDato().toString());
@@ -148,7 +156,13 @@ public class ArbolBinario {
         }
         return pre;
     }
-
+    
+    /**
+     * Construye una lista con el recorrido posorden desde un nodo que pertenezca al árbol.
+     * 
+     * @param x nodo "raiz" del recorrido.
+     * @return una lista de strings con el recorrido posorden. 
+     */
     public List<String> recorridoPos(NodoDoble x) {
         if (x != null) {
             recorridoPos(x.retornaLI());
@@ -157,7 +171,9 @@ public class ArbolBinario {
         }
         return pos;
     }
-
+    /**
+     * Vacía las listas de los recorridos.
+     */
     public void limpiarRecorridos() {
         in.clear();;
         pre.clear();
@@ -165,10 +181,9 @@ public class ArbolBinario {
     }
 
     /**
-     * Permite obtener el numero de hojas del arbol por medio del metodo
-     * HojasporNodo
+     * Permite obtener el numero de hojas del árbol por medio del método hojasporNodo.
      *
-     * @return cantidad de hojas del arbol
+     * @return un número entero con la cantidad de hojas del arbol
      */
     public int hojas() {
         if (esVacio()) {
@@ -178,11 +193,11 @@ public class ArbolBinario {
     }
 
     /**
-     * metodo auxiliar de hojas, realiuza una serie de llamdas recursivas a modo
-     * de exploracion para contar cuales nodos son hojas dentro del arbol
+     * Método auxiliar de hojas, realiza una serie de llamadas recursivas a modo
+     * de exploración para contar cuáles nodos son hojas dentro del árbol.
      *
-     * @param x
-     * @retutn cantida de hojas del arbol
+     * @param x nodo desde donde se van a contar las hojas.
+     * @retutn un número entero con la cantidad de hojas del árbol.
      */
     private int hojasPorNodo(NodoDoble x) {
         if (x == null) {
@@ -197,35 +212,35 @@ public class ArbolBinario {
     }
 
     /**
-     * invoca el metodo gradoConRaiz, retorna el grado del arbol
+     * Permite obtener el grado del árbol por medio del método gradoConRaiz.
      *
-     * @return int grado del arbol
+     * @return un número entero con el grado del árbol binario.
      */
     public int grado() {
         if (esVacio()) {
             return 0;
         }
-        return (gradoConRaiz(raiz));
+        return (gradoPorNodo(raiz));
     }
 
     /**
-     * Metodo auxiliar de grado, realiza la exploracion del arbol para
-     * determinar su grado por medio de recursion
+     * Método auxiliar de grado, realiza la exploración del árbol para
+     * determinar su grado por medio de recursión.
      *
-     * @param x
-     * @return grado del arbol
+     * @param x  nodo desde donde se van a contar el grado del árbol. 
+     * @return un número entero con el grado del árbol.
      */
-    private int gradoConRaiz(NodoDoble x) {
+    private int gradoPorNodo(NodoDoble x) {
         if (x == null) {
             return 0;
         }
         int g = x.grado();
         int gmax = g;
-        g = gradoConRaiz(x.retornaLD());
+        g = gradoPorNodo(x.retornaLD());
         if (g > gmax) {
             gmax = g;
         }
-        g = gradoConRaiz(x.retornaLI());
+        g = gradoPorNodo(x.retornaLI());
         if (g > gmax) {
             gmax = g;
         }
@@ -236,21 +251,21 @@ public class ArbolBinario {
     }
 
     /**
-     * Invoca al metodo alturaPorNodo para determinar la altura del arbol
-     *
-     * @return int altura del arbol
+     * Permite obtener la altura del árbol por medio del método alturaPorNodo.
+     * 
+     * @return un número entero con la altura del árbol.
      */
     public int altura() {
         return alturaPorNodo(raiz);
     }
 
     /**
-     * metodo auxliar de altura, realiza un recorrido por el arbol para encontar
-     * la cadena de nodos mas larga de forma decendente retorna dicho valor a
+     * Método auxiliar de altura, realiza un recorrido por el árbol para encontrar
+     * la cadena de nodos más larga de forma descendente retorna dicho valor a
      * modo de altura.
      *
-     * @param x nodo doble
-     * @return int altura del arbol
+     * @param x nodo desde donde se van a contar la altura del árbol. 
+     * @return un número entero con la altura del arbol
      */
     private int alturaPorNodo(NodoDoble x) {
         if (x == null) {
@@ -263,18 +278,13 @@ public class ArbolBinario {
         }
         return (derecha + 1);
     }
-
+    
     /**
-     * Invoca el metodo nhr para obtener una lista con todos los nodos hoja del
-     * arbol.
-     *
-     * @return List con todos los nodos hojas del arbol
+     * Convierte una lista de nodoDoble en una lista de String.
+     * 
+     * @param n es la lista a convertir.
+     * @return una lista de Strings.
      */
-    public List<NodoDoble> nodosHoja() {
-        List c = nhr(raiz);
-        return c;
-    }
-
     public List<String> listaNodoToString(List<NodoDoble> n) {
         List<String> c = new LinkedList<>();
         n.forEach((t) -> {
@@ -282,17 +292,27 @@ public class ArbolBinario {
         });
         return c;
     }
-
+   
     /**
-     * metodo auxiliar de nodosHoja, realiza una exploracion en el arbol para
-     * obtener los nodos que cumplen con la condicion de ser hojas este metodo
-     * recursivo retorna un objeto de tipo List, recive como parametro el nodo a
-     * comprobar
+     * Permite obtener los nodos hoja del árbol por medio del método hojasPorNodoLista.
      *
-     * @param x nodoDoble indice
-     * @return List nodos hoja
+     * @return la altura del árbol.
      */
-    public List<NodoDoble> nhr(NodoDoble x) {
+    public List<NodoDoble> nodosHoja() {
+        List c = hojasPorNodoLista(raiz);
+        return c;
+    }
+    
+    /**
+     * Método auxiliar de nodosHoja, realiza una exploración en el árbol para
+     * obtener los nodos que cumplen con la condición de ser hojas este método
+     * recursivo retorna un objeto de tipo List, recibe como parámetro el nodo a
+     * comprobar.
+     *
+     * @param x nodo desde donde se van a incluir los nodos hoja del árbol. 
+     * @return una lista con los nodos hoja del árbol.
+     */
+    public List<NodoDoble> hojasPorNodoLista(NodoDoble x) {
         if (x == null) {
             return null;
         }
@@ -301,23 +321,23 @@ public class ArbolBinario {
             aux.add(x);
         } else {
             if (x.retornaLD() != null) {
-                aux.addAll(nhr(x.retornaLD()));
+                aux.addAll(hojasPorNodoLista(x.retornaLD()));
             }
             if (x.retornaLI() != null) {
-                aux.addAll(nhr(x.retornaLI()));
+                aux.addAll(hojasPorNodoLista(x.retornaLI()));
             }
         }
         return aux;
     }
 
     /**
-     * realiza una exploracion en el arbol buscando el nodo que contenga el
-     * parametro name de tipo String en el campo de dato, retorna dicho nodo
+     * Realiza una exploración en el árbol buscando el nodo que contenga el
+     * parámetro name de tipo String en el campo de dato, retorna dicho nodo.
      *
-     * @param name string del dato en el campo de dato del nodo
-     * @return Nodo DOble que contiene el nombre dado
+     * @param nombre es el campo de dato del nodo a buscar en el árbol.
+     * @return un Nodo Doble que contiene el nombre dado.
      */
-    public NodoDoble buscarNodo(String name) {
+    public NodoDoble buscarNodo(String nombre) {
         Stack x = new Stack();
         x.add(raiz);
         NodoDoble current;
@@ -325,7 +345,7 @@ public class ArbolBinario {
         while (!x.isEmpty()) {
             current = (NodoDoble) x.pop();
             aux = (String) current.retornaDato();
-            if (aux.equals(name.toUpperCase())) {
+            if (aux.equals(nombre.toUpperCase())) {
                 return current;
             } else {
                 if (current.retornaLD() != null) {
@@ -340,7 +360,14 @@ public class ArbolBinario {
         }
         return null;
     }
-
+    
+    /**
+     * Permite obtener los hijos de un nodo del árbol.
+     * 
+     * @param x es un nodo del árbol al que se le van obtener los hijos.
+     * @return los hijos del nodo dado.
+     */
+    
     public String hijos(NodoDoble x) {
         List<String> hijos = new LinkedList<>();
         if (x != null) {
@@ -357,10 +384,10 @@ public class ArbolBinario {
     }
 
     /**
-     * Invoca el metodo pdr el cual se encarga de buscar el padre de un nodo x
+     * Permite obtener el padre de un nodo dado por medio del método pdr.
      *
-     * @param x nodoDoble hijo
-     * @return nodo doble padre de x
+     * @param x es un nodo al que se le va buscar el padre.
+     * @return el nodo padre del nodo dado.
      */
     public NodoDoble padre(NodoDoble x) {
         if (x == raiz) {
@@ -370,13 +397,12 @@ public class ArbolBinario {
     }
 
     /**
-     * metodo auxiliar que busca de forma recursiva el padre de un nodo dado,
-     * toma como parametros el ultimo nodo explorado u origen y el nodo el cual
-     * se esta buscando, retorna nulo en caso de no estar presente en el arbol
+     * Método auxiliar que busca de forma recursiva el padre de un nodo dado,
+     * toma como parámetros origen del arbol y el nodo el cual se está buscando.
      *
-     * @param x
-     * @param origen
-     * @retun nodoDoble padre del nodo x
+     * @param x es un nodo al que se le va buscar el padre.
+     * @param origen es la raiz del arbol.
+     * @retun el nodo padre del nodo dado o retorna nulo en caso de no estar presente en el árbol.
      */
     private NodoDoble pdr(NodoDoble x, NodoDoble origen) {
         if (origen.retornaLD() == null && origen.retornaLI() == null) {
@@ -405,12 +431,11 @@ public class ArbolBinario {
     }
 
     /**
-     * mediante el metodo padre, realiza una lista con todos los nodos que se
-     * recorren hasta llegar a parametro x desde la raiz retorna un objeto de
-     * tipo List
+     * Permite obtener los ancestros de un nodo dado por medio del método padre, 
+     * realiza una lista con todos los nodos que se recorren hasta llegar a la raíz.
      *
-     * @param x nodo doble a buscar sus ancestros
-     * @return List con los ancestros de x
+     * @param x es un nodo al que se le van buscar los ancestros.
+     * @return una lista con los ancestros del nodo dado.
      */
     public List<NodoDoble> ancestros(NodoDoble x) {
         List aux = new ArrayList();
@@ -431,13 +456,13 @@ public class ArbolBinario {
     }
 
     /**
-     * mediante el metodo Padre busca el nodo del cual procede el parametro x,
-     * retorna el valor del nodo en el campo de liga opuesto a x. retorna nulo
-     * en caso de no haber ningun nodo enj el campo o no encontrarse dicho nodo
-     * en el arbol
+     * Permite obtener el hermano de un nodo dado por medio del método padre 
+     * que busca el nodo del cual precede el parámetro x. 
      *
-     * @param x NOdo doble a buscar el hermano
-     * @return hemano del nodo x
+     * @param x es un nodo al que se le va buscar el hermano.
+     * @return el nodo en el campo de liga opuesto a x. Retorna nulo
+     * en caso de no haber ningún nodo en el campo o no encontrarse dicho nodo
+     * en el árbol.
      */
     public NodoDoble hermano(NodoDoble x) {
         if (x == null) {
@@ -462,14 +487,12 @@ public class ArbolBinario {
     }
 
     /**
-     * mediante el metodo padre encuentra el nodo de procendencia del parametro
-     * x, seguido de esto retorna si es se encuentra en la liga izquierda o
-     * derecha de este nodo. -1: si el nodo no esta en el arbol 1: si esta en la
-     * derecha 0: si esta en la izquierda
+     * Permite obtener el lado (derecho o izquierdo) del hermano de un nodo dado por
+     * medio del método padre que encuentra el nodo del cual precede el parámetro x. 
      *
-     * @param x nodoDoble a consultar
-     * @return int valor si es izquiero, derecho o no esta en el arbol
-     *
+     * @param x es un nodo al que se le va consultar el lado del hermano.
+     * @return un número entero que puede ser -1 si el nodo no está en el
+     * árbol, 1 si está en la derecha, 0 si está en la izquierda.
      */
     public int esIzorDe(NodoDoble x) {
         if (x == null) {
@@ -486,11 +509,12 @@ public class ArbolBinario {
     }
 
     /**
-     * Busca el nodo hermano del nodo de procedencia del parametro x retorna
-     * null si no esta en el arbol o si el nodo de procendecia no tiene hermano
+     * Permite obtener el tio de un nodo dado por medio de los métodos hermano y padre.
+     * que busca el nodo del cual precede el parámetro x y el hermano de dicho parámetro.
+     * 
      *
-     * @param x NOdo doble a buscarle su tio
-     * @return NodoDoble tio del nodo x
+     * @param x es un nodo al que se le va consultar el tio.
+     * @return retorna null si el nodo no está en el árbol o retorna el tio del nodo dado.
      */
     public NodoDoble tio(NodoDoble x) {
         if (x == null) {
@@ -499,11 +523,13 @@ public class ArbolBinario {
         return hermano(padre(x));
     }
 
+
     /**
-     * retorna el padre, del nodo padre del parametro x
+     * Permite obtener el abuelo (el padre del padre) de un nodo dado por medio del método padre.
+     * que busca el nodo del cual precede el parámetro x.
      *
-     * @param x Nodo Doble a buscarle su abuelo
-     * @return NodoDOble abuelo de x
+     * @param x es un nodo al que se le va consultar el abuelo.
+     * @return retorna el nodo abuelo del nodo dado.
      */
     public NodoDoble abuelo(NodoDoble x) {
         if (x == null) {
@@ -514,13 +540,13 @@ public class ArbolBinario {
 
     /**
      * Recibe dos String delimitados con comas correspondientes a los recorridos
-     * in y preoden, cada elemento de lso String es el dato de un nodo de una
-     * rbol con estos recoridos que sera construido por medio del metodo inpre
+     * in y preoden, cada elemento del String es el dato de un nodo de un
+     * árbol con estos recorridos que será construido por medio del método inpre.
      *
-     * @param inorden String delimitado por comas con el recorrido in orden del
-     * arbol a reconstruir
-     * @param preorden String delimitado por comas con el recorrido preorden del
-     * arbol a reconstruir
+     * @param inorden es un String delimitado por comas con el recorrido in orden del
+     * árbol a reconstruir.
+     * @param preorden es un String delimitado por comas con el recorrido preorden del
+     * árbol a reconstruir.
      */
     public void construyeInPre(String inorden, String preorden) {
         List inC = Arrays.asList(inorden.split(","));
@@ -529,14 +555,14 @@ public class ArbolBinario {
     }
 
     /**
-     * Metodo auxiliar de construyeinPre este metodo toma dos listas de igual
-     * longitud en principio para obtener el orden de los nodos de un arbol por
-     * medio de llamdas recursivas pa conectando los nodos del arbol hasta
-     * lograr su construccion. retorna un elemeto NodoDoble con cada recursion.
+     * Método auxiliar de construyeinPre este método toma dos listas de igual
+     * longitud en principio para obtener el orden de los nodos de un árbol por
+     * medio de llamadas recursivas pa conectando los nodos del árbol hasta
+     * lograr su construcción.
      *
-     * @param in Lista con el contenido indorden del arbol
-     * @param pre Lista con el recorrido preorden del arbol
-     * @return NodoDoble que contiene la raiz del arbol formado por in y pre
+     * @param in es una lista con el contenido indorden del árbol.
+     * @param pre es una lista con el recorrido preorden del árbol.
+     * @return un nodo que contiene la raíz del árbol formado por in y pre, con cada recurción.
      */
     private NodoDoble inpre(List in, List pre) {
         NodoDoble x;
@@ -566,12 +592,12 @@ public class ArbolBinario {
     /**
      * Recibe dos String delimitados con comas correspondientes a los recorridos
      * in y posoden, cada elemento de los String es un dato de un nodo de una
-     * arbol con estos recoridos que sera construido por medio del metodo inpos
+     * arbol con estos recorridos que será construido por medio del método inpos
      *
-     * @param inorden String delimitado por comas que contiene el recorrido in
-     * orden del arbol a reconstruir
-     * @param posorden String delimitado por comas que contiene el recorrido pos
-     * orden del arbol a reconstruir
+     * @param inorden es un String delimitado por comas que contiene el recorrido in
+     * orden del árbol a reconstruir.
+     * @param posorden es un String delimitado por comas que contiene el recorrido pos
+     * orden del árbol a reconstruir.
      *
      */
     public void construyeInPos(String inorden, String posorden) {
@@ -581,14 +607,14 @@ public class ArbolBinario {
     }
 
     /**
-     * Metodo auxiliar de construyeInPos este metodo toma dos listas de igual
-     * longitud en principio para obtener el orden de los nodos de un arbol por
-     * medio de llamdas recursivas pa conectando los nodos del arbol hasta
-     * lograr su construccion. retorna un elemeto NodoDoble con cada recursion.
+     * Método auxiliar de construyeInPos, este método toma dos listas de igual
+     * longitud en principio para obtener el orden de los nodos de un árbol por
+     * medio de llamadas recursivas pa conectando los nodos del árbol hasta
+     * lograr su construcción. retorna un elemento nodo con cada recursión.
      *
-     * @param in List que contiene el recorrido in orden del arbol
-     * @param pos List que contiene el recorrido pos orden del arbol
-     * @return nodoDoble raiz del arbol formado por in y pos
+     * @param in es una lista que contiene el recorrido in orden del árbol.
+     * @param pos es una lista que contiene el recorrido pos orden del árbol.
+     * @return el nodo raíz del árbol formado por in y pos.
      */
     private NodoDoble inpos(List in, List pos) {
         NodoDoble x;

@@ -67,19 +67,19 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="InternalFrameArbol" min="-2" pref="822" max="-2" attributes="0"/>
+                  <Component id="internalFrameArbol" min="-2" pref="822" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="InternalFrameArbol" alignment="1" pref="485" max="32767" attributes="0"/>
+              <Component id="internalFrameArbol" alignment="1" pref="485" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Container class="javax.swing.JInternalFrame" name="InternalFrameArbol">
+        <Container class="javax.swing.JInternalFrame" name="internalFrameArbol">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -136,8 +136,8 @@
                       <Component id="buttonDetallesNodo" alignment="0" pref="194" max="32767" attributes="0"/>
                       <Component id="buttonNuevoArbol" alignment="1" max="32767" attributes="0"/>
                       <Component id="buttonRecorridos" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" alignment="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="opciones" alignment="0" max="32767" attributes="0"/>
+                      <Component id="consolaScroll" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -147,7 +147,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="opciones" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="buttonNuevoArbol" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -157,7 +157,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="buttonDetallesNodo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" pref="285" max="32767" attributes="0"/>
+                  <Component id="consolaScroll" pref="285" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -223,7 +223,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonRecorridosActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="opciones">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
@@ -235,14 +235,14 @@
             <Property name="text" type="java.lang.String" value="OPCIONES"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="consolaScroll">
           <Properties>
             <Property name="verticalScrollBarPolicy" type="int" value="21"/>
           </Properties>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTextArea" name="Consola">
+            <Component class="javax.swing.JTextArea" name="consola">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

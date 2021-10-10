@@ -9,8 +9,10 @@ import Modelo.ArbolBinario;
 import Vista.Lienzo;
 
 /**
- *
+ * Esta clase se encarga de enlazar la estructura del árbol binario y el lienzo para dibujar el árbol.
+ * 
  * @author Sofito-Chan
+ * @author JohnDRD
  */
 public class ArbolControlador {
     private ArbolBinario arbol;
@@ -24,7 +26,7 @@ public class ArbolControlador {
     }
     
     /**
-     * Este método le asigna el arbol a el lienzo para pintarlo.
+     * Este método le asigna el árbol a el lienzo para pintarlo.
      */
     public void iniciar() {
         lienzo.setArbol(arbol);
