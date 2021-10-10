@@ -39,7 +39,7 @@ public class ArbolNegocio {
     public boolean verificarLongitud(String x) {
         Queue<String> cola = new LinkedList();
         cola.addAll(Arrays.asList(x.split(",")));
-        if (cola.size() >= 15) {
+        if (cola.size() <= 15) {
             return true;
         }
         return false;

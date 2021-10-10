@@ -75,6 +75,7 @@ public class ArbolBinario {
      * @param x es un string de nodos separados por comas.
      */
     public void ConstruyeArbolBinario2(String x) {
+        x = x.toUpperCase();
         Queue<String> cola = new LinkedList();
         cola.addAll(Arrays.asList(x.split(",")));
         while (cola.isEmpty() != true) {

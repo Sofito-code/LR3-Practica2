@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class UIArbol01 extends javax.swing.JFrame {
 
-    public UIArbol01() {        
+    public UIArbol01() {
         arbol = new ArbolBinario();
         lienzo = new Lienzo();
         control = new ArbolControlador(arbol, lienzo);
@@ -163,58 +163,60 @@ public class UIArbol01 extends javax.swing.JFrame {
     private void buttonCantiNodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCantiNodosActionPerformed
         ArbolNegocio negocio = new ArbolNegocio();
         int n;
+        boolean valido = false;
         try {
             n = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Elige un número de nodos (Mín: 1, Max: 15): ", "Cantidad de nodos", 3));
+            valido = negocio.verificarCantidadNodos(n);
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "Por favor coloque valores númericos válidos.", "Error", 2);
             return;
         } catch (NullPointerException e) {
             return;
         }
-        if (!negocio.verificarCantidadNodos(n)) {
+        if (!valido) {
             JOptionPane.showMessageDialog(rootPane, "El número no es válido.");
             return;
         }
         int f = 3;
         try {
             f = JOptionPane.showConfirmDialog(rootPane, "¿Quiere identificar los nodos con letras?");
+            switch (f) {
+                //si
+                case 0:
+                    arbol.ConstruyeArbolBinario1(n, true);
+                    break;
+                //no
+                case 1:
+                    arbol.ConstruyeArbolBinario1(n, false);
+                    break;
+                case 2:
+                    return;
+                default:
+                    return;
+            }
+            lienzo();
         } catch (NullPointerException e) {
             return;
         }
-        switch (f) {
-            //si
-            case 0:
-                arbol.ConstruyeArbolBinario1(n, true);
-                break;
-            //no
-            case 1:
-                arbol.ConstruyeArbolBinario1(n, false);
-                break;
-            case 2:
-                return;
-            default:
-                return;
-        }
-        lienzo();
     }//GEN-LAST:event_buttonCantiNodosActionPerformed
 
     private void buttonStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStringActionPerformed
         ArbolNegocio negocio = new ArbolNegocio();
         String arbolB = "";
+        boolean valido = false;
         try {
             arbolB = JOptionPane.showInputDialog(rootPane, "Ingrese los nombres de los nodos separados por comas (Una letra o número por cada nodo) (Max: 15 nodos): ", "Nodos separados por comas", 3);
-
-        } catch (Exception e) {
+            valido = negocio.verificarLongitud(arbolB);
+        } catch (NullPointerException e) {
             return;
         }
-        arbol.ConstruyeArbolBinario2(arbolB);
-        lienzo();
-        if (negocio.verificarLongitud(arbolB)) {
+        if (valido) {
             arbol.ConstruyeArbolBinario2(arbolB);
             lienzo();
         } else {
             JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");
         }
+        lienzo();        
     }//GEN-LAST:event_buttonStringActionPerformed
 
     private void buttonCInPosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCInPosActionPerformed
@@ -224,15 +226,22 @@ public class UIArbol01 extends javax.swing.JFrame {
         try {
             in = JOptionPane.showInputDialog(rootPane, "Ingresa el recorrido inorden del arbol: ", "InOrden", 3);
             pos = JOptionPane.showInputDialog(rootPane, "Ingresa el recorrido posorden del arbol: ", "PosOrden", 3);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
+            return;
+        } catch (Exception x) {
             return;
         }
-        if (negocio.verificarLongitud(in, pos)) {
-            arbol.construyeInPos(in, pos);
-            lienzo();
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");
+        try {
+            if (negocio.verificarLongitud(in, pos)) {
+                arbol.construyeInPos(in, pos);
+                lienzo();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");
+            }
+        } catch (NullPointerException e) {
+            return;
         }
+
     }//GEN-LAST:event_buttonCInPosActionPerformed
 
     private void buttonInPreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInPreActionPerformed
@@ -242,14 +251,20 @@ public class UIArbol01 extends javax.swing.JFrame {
         try {
             in = JOptionPane.showInputDialog(rootPane, "Ingresa el recorrido inorden del arbol: ", "InOrden", 3);
             pre = JOptionPane.showInputDialog(rootPane, "Ingresa el recorrido preorden del arbol: ", "PreOrden", 3);
-        } catch (Exception e) {
+        } catch (NullPointerException e) {
+            return;
+        } catch (Exception x) {
             return;
         }
-        if (negocio.verificarLongitud(in, pre)) {
-            arbol.construyeInPre(in, pre);
-            lienzo();
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");
+        try {
+            if (negocio.verificarLongitud(in, pre)) {
+                arbol.construyeInPre(in, pre);
+                lienzo();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");
+            }
+        } catch (NullPointerException e) {
+            return;
         }
     }//GEN-LAST:event_buttonInPreActionPerformed
 

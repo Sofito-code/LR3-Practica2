@@ -39,9 +39,9 @@ public class UIArbol02 extends javax.swing.JFrame {
     private void internalFrame() {
         Rectangle tamaño = internalFrameArbol.getBounds();
         this.internalFrameArbol = null;
-        this.internalFrameArbol = new JInternalFrame("Arbol Binario", false);
+        this.internalFrameArbol = new JInternalFrame("Árbol Binario", false);
         this.panelArbol.add(internalFrameArbol, JLayeredPane.DEFAULT_LAYER);
-        this.internalFrameArbol.setToolTipText("Mueveme desde el titulo Arbol Binario");
+        this.internalFrameArbol.setToolTipText("Click sostenido en el título para mover.");
         this.internalFrameArbol.setVisible(true);
         this.internalFrameArbol.setBounds(tamaño);
         this.internalFrameArbol.setEnabled(false);
@@ -119,7 +119,7 @@ public class UIArbol02 extends javax.swing.JFrame {
 
         buttonDetallesArbol.setBackground(new java.awt.Color(102, 255, 102));
         buttonDetallesArbol.setForeground(new java.awt.Color(0, 0, 0));
-        buttonDetallesArbol.setText("Detalles del arbol");
+        buttonDetallesArbol.setText("Detalles del árbol");
         buttonDetallesArbol.setToolTipText("Altura, grado, hijos");
         buttonDetallesArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +129,7 @@ public class UIArbol02 extends javax.swing.JFrame {
 
         buttonNuevoArbol.setBackground(new java.awt.Color(102, 255, 102));
         buttonNuevoArbol.setForeground(new java.awt.Color(0, 0, 0));
-        buttonNuevoArbol.setText("Nuevo Arbol");
+        buttonNuevoArbol.setText("Nuevo Árbol");
         buttonNuevoArbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonNuevoArbolActionPerformed(evt);
@@ -139,7 +139,7 @@ public class UIArbol02 extends javax.swing.JFrame {
         buttonDetallesNodo.setBackground(new java.awt.Color(102, 255, 102));
         buttonDetallesNodo.setForeground(new java.awt.Color(0, 0, 0));
         buttonDetallesNodo.setText("Detalles de un nodo");
-        buttonDetallesNodo.setToolTipText("Hijos, hermanos, padre, ancestros, tio , abuelo");
+        buttonDetallesNodo.setToolTipText("Hijos, hermanos, padre, ancestros, tío , abuelo");
         buttonDetallesNodo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonDetallesNodoActionPerformed(evt);
@@ -232,7 +232,7 @@ public class UIArbol02 extends javax.swing.JFrame {
     
     private void detallesArbol() {        
     String detallesArbol = "";
-        detallesArbol = "Detalles del arbol\n\nAltura: " + arbol.altura() + "\nGrado: "
+        detallesArbol = "Detalles del árbol\n\nAltura: " + arbol.altura() + "\nGrado: "
                 + arbol.grado() + "\nNúmero de hojas: " + arbol.hojas() + "\nHojas: " 
                 + arbol.listaNodoToString(arbol.nodosHoja());
         consola.setText("");
@@ -266,7 +266,7 @@ public class UIArbol02 extends javax.swing.JFrame {
             //Hijos
             hijos = "Hijos: ";
             if(arbol.hijos(nodo).equals("[]")){
-                hijos += "No tiene hijos";
+                hijos += "No tiene hijos.";
             } else {
                 hijos += arbol.hijos(nodo);
             }
@@ -275,7 +275,7 @@ public class UIArbol02 extends javax.swing.JFrame {
             NodoDoble padreNodo = arbol.padre(nodo);
             padre += "\nPadre: ";
             if(padreNodo == null || padreNodo.equals(nodo)){
-                padre += "No tiene padre";
+                padre += "No tiene padre.";
             }
             else{
                 padre += padreNodo;
@@ -284,7 +284,7 @@ public class UIArbol02 extends javax.swing.JFrame {
             //Hermano
             hermano += "\nHermano: ";
             if (arbol.hermano(nodo) == null) {
-                hermano += "No tiene hermano";
+                hermano += "No tiene hermano.";
             } else {                
                 hermano += arbol.hermano(nodo);
                 int opcion = arbol.esIzorDe(arbol.hermano(nodo));
@@ -309,15 +309,15 @@ public class UIArbol02 extends javax.swing.JFrame {
                 ancest.remove(nodo);
             }
             if(ancest.toString().equals("[]")){
-                ancestros += "No tiene ancestros";
+                ancestros += "No tiene ancestros.";
             } else {
                 ancestros += ancest.toString();
             }
             
             //Tio
-            tio = "\nTio: ";
+            tio = "\nTío: ";
             if(arbol.tio(nodo) == null){
-                tio += "No tiene tio";
+                tio += "No tiene tío.";
             } else {
                 tio += arbol.tio(nodo);
             }
@@ -325,7 +325,7 @@ public class UIArbol02 extends javax.swing.JFrame {
             //Abuelo
             abuelo += "\nAbuelo: ";
             if(arbol.abuelo(nodo) == null || arbol.abuelo(nodo).equals(nodo) || arbol.abuelo(nodo).equals(padreNodo)){
-                abuelo += "No tiene abuelo";
+                abuelo += "No tiene abuelo.";
             } else {
                 abuelo += arbol.abuelo(nodo);
             }
