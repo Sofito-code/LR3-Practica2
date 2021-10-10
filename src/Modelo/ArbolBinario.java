@@ -15,7 +15,9 @@ import java.util.*;
 public class ArbolBinario {
 
     private NodoDoble raiz;
-    private List<NodoDoble> hojas;
+    List<String> in = new LinkedList<>();
+    List<String> pre = new LinkedList<>();
+    List<String> pos = new LinkedList<>();
     String[] abc = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
     /**
@@ -23,20 +25,10 @@ public class ArbolBinario {
      */
     public ArbolBinario() {
         raiz = null;
-        hojas = new ArrayList();
     }
 
     public ArbolBinario(NodoDoble x) {
         raiz = x;
-        hojas = new ArrayList();
-    }
-
-    public NodoDoble getRaiz() {
-        return raiz;
-    }
-
-    public boolean esVacio() {
-        return (raiz == null);
     }
 
     /**
@@ -62,7 +54,7 @@ public class ArbolBinario {
             }
         } else {
             for (int i = 0; i < cantidadNodos; i++) {
-                int nodo = r.nextInt(25);
+                String nodo = String.valueOf(r.nextInt(25));
                 if (!nodos.contains(nodo)) {
                     this.agregar(nodo);
                     nodos.add(nodo);
@@ -86,6 +78,14 @@ public class ArbolBinario {
         }
     }
 
+    public NodoDoble getRaiz() {
+        return raiz;
+    }
+
+    public boolean esVacio() {
+        return (raiz == null);
+    }
+
     /**
      * añade a un arbol binario un elemento d, que no esté presente en el arbol
      *
@@ -98,7 +98,7 @@ public class ArbolBinario {
          * la raíz.
          * 
          */
-        if (esVacio()) {            
+        if (esVacio()) {
             raiz = n;
             return;
         }
@@ -125,75 +125,43 @@ public class ArbolBinario {
          * 
          */
         if (d.hashCode() > q.retornaDato().hashCode()) {
-            q.asignaLD(n);            
+            q.asignaLD(n);
         } else {
-            q.asignaLI(n);            
+            q.asignaLI(n);
         }
     }
 
-    /**
-     * Permite mostrar el arbol en los tres diferentes recorridos,
-     * inorden,preorden y posorden. toma como parametro un entero que permite
-     * selecionar la forma de recorido 1=Inorden 2=preorden 3=posorden
-     *
-     * @param opcion
-     * @param n
-     */
-    public void mostrar(int opcion, NodoDoble n) {
-        System.out.println();
-        if (opcion == 0) {
-            //INORDEN
-            mostrarInorden(n);
-        }
-        if (opcion == 1) {
-            //PREORDEN
-            mostrarPreorden(n);
-        }
-        if (opcion == 2) {
-            //POSORDEN
-            mostrarPosorden(n);
-        }
-    }
-
-    /**
-     * Metodo auxiliar de mostrar, realiza el recorrido inorden del arbol
-     *
-     * @param x
-     */
-    private void mostrarInorden(NodoDoble x) {
+    public List<String> recorridoIn(NodoDoble x) {
         if (x != null) {
-            mostrarInorden(x.retornaLI());
-            System.out.println(x.retornaDato());
-            mostrarInorden(x.retornaLD());
+            recorridoIn(x.retornaLI());
+            in.add(x.retornaDato().toString());
+            recorridoIn(x.retornaLD());
         }
+        return in;
     }
 
-    /**
-     * Metodo auxiliar de mostrar, realiza el recorrido preorden del arbol
-     *
-     * @param x
-     */
-    private void mostrarPreorden(NodoDoble x) {
-        if (x == null) {
-            return;
+    public List<String> recorridoPre(NodoDoble x) {
+        if (x != null) {
+            pre.add(x.retornaDato().toString());
+            recorridoPre(x.retornaLI());
+            recorridoPre(x.retornaLD());
         }
-        System.out.println(x.retornaDato());
-        mostrarPreorden(x.retornaLI());
-        mostrarPreorden(x.retornaLD());
+        return pre;
     }
 
-    /**
-     * Metodo auxiliar de mostrar, realiza el recorrido posorden del arbol
-     *
-     * @param x
-     */
-    private void mostrarPosorden(NodoDoble x) {
-        if (x == null) {
-            return;
+    public List<String> recorridoPos(NodoDoble x) {
+        if (x != null) {
+            recorridoPos(x.retornaLI());
+            recorridoPos(x.retornaLD());
+            pos.add(x.retornaDato().toString());
         }
-        mostrarPosorden(x.retornaLI());
-        mostrarPosorden(x.retornaLD());
-        System.out.println(x.retornaDato());
+        return pos;
+    }
+
+    public void limpiarRecorridos() {
+        in.clear();;
+        pre.clear();
+        pos.clear();
     }
 
     /**
@@ -302,16 +270,24 @@ public class ArbolBinario {
      *
      * @return List con todos los nodos hojas del arbol
      */
-    public List<NodoDoble> nodoshoja() {
+    public List<NodoDoble> nodosHoja() {
         List c = nhr(raiz);
+        return c;
+    }
+
+    public List<String> listaNodoToString(List<NodoDoble> n) {
+        List<String> c = new LinkedList<>();
+        n.forEach((t) -> {
+            c.add(t.retornaDato().toString());
+        });
         return c;
     }
 
     /**
      * metodo auxiliar de nodosHoja, realiza una exploracion en el arbol para
      * obtener los nodos que cumplen con la condicion de ser hojas este metodo
-     * recursivo retorna un objeto de tipo List<NodoDoble>, recive como
-     * parametro el nodo a comprobar
+     * recursivo retorna un objeto de tipo List, recive como parametro el nodo a
+     * comprobar
      *
      * @param x nodoDoble indice
      * @return List nodos hoja
@@ -331,7 +307,6 @@ public class ArbolBinario {
                 aux.addAll(nhr(x.retornaLI()));
             }
         }
-        hojas = aux;
         return aux;
     }
 
@@ -345,12 +320,12 @@ public class ArbolBinario {
     public NodoDoble buscarNodo(String name) {
         Stack x = new Stack();
         x.add(raiz);
-        NodoDoble current = this.raiz;
+        NodoDoble current;
         String aux;
         while (!x.isEmpty()) {
             current = (NodoDoble) x.pop();
             aux = (String) current.retornaDato();
-            if (aux.equals(name)) {
+            if (aux.equals(name.toUpperCase())) {
                 return current;
             } else {
                 if (current.retornaLD() != null) {
@@ -364,6 +339,21 @@ public class ArbolBinario {
             }
         }
         return null;
+    }
+
+    public String hijos(NodoDoble x) {
+        List<String> hijos = new LinkedList<>();
+        if (x != null) {
+            if (x.retornaLI() != null) {
+                hijos.add(x.retornaLI().retornaDato().toString());
+            }
+            if (x.retornaLD() != null) {
+                hijos.add(x.retornaLD().retornaDato().toString());
+            }
+            return hijos.toString();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -404,9 +394,9 @@ public class ArbolBinario {
                     }
                 }
                 if (origen.retornaLI() != null) {
-                    aux1 = pdr(x, origen.retornaLI());
-                    if (aux1 != null) {
-                        return aux1;
+                    aux2 = pdr(x, origen.retornaLI());
+                    if (aux2 != null) {
+                        return aux2;
                     }
                 }
             }
@@ -417,7 +407,7 @@ public class ArbolBinario {
     /**
      * mediante el metodo padre, realiza una lista con todos los nodos que se
      * recorren hasta llegar a parametro x desde la raiz retorna un objeto de
-     * tipo List<NodoDoble>
+     * tipo List
      *
      * @param x nodo doble a buscar sus ancestros
      * @return List con los ancestros de x
@@ -433,6 +423,10 @@ public class ArbolBinario {
             aux.add(pc);
             pc = padre(pc);
         } while (pc != raiz);
+        if (!aux.contains(raiz)) {
+
+            aux.add(raiz);
+        }
         return aux;
     }
 
@@ -451,6 +445,9 @@ public class ArbolBinario {
         }
         NodoDoble aux = padre(x);
         if (aux == null) {
+            return null;
+        }
+        if (aux == x) {
             return null;
         }
         if (aux.retornaLD() != null && aux.retornaLD() != x) {
@@ -526,9 +523,9 @@ public class ArbolBinario {
      * arbol a reconstruir
      */
     public void construyeInPre(String inorden, String preorden) {
-        List in = Arrays.asList(inorden.split(","));
-        List pre = Arrays.asList(preorden.split(","));
-        raiz = inpre(in, pre);
+        List inC = Arrays.asList(inorden.split(","));
+        List preC = Arrays.asList(preorden.split(","));
+        raiz = inpre(inC, preC);
     }
 
     /**
@@ -543,7 +540,7 @@ public class ArbolBinario {
      */
     private NodoDoble inpre(List in, List pre) {
         NodoDoble x;
-        int i, j, k;
+        int k;
         String aux1, aux2;
         List apre, ain;
         if (in.isEmpty()) {
@@ -578,9 +575,9 @@ public class ArbolBinario {
      *
      */
     public void construyeInPos(String inorden, String posorden) {
-        List in = Arrays.asList(inorden.split(","));
-        List pos = Arrays.asList(posorden.split(","));
-        raiz = inpos(in, pos);
+        List inC = Arrays.asList(inorden.split(","));
+        List posC = Arrays.asList(posorden.split(","));
+        raiz = inpos(inC, posC);
     }
 
     /**
@@ -595,7 +592,7 @@ public class ArbolBinario {
      */
     private NodoDoble inpos(List in, List pos) {
         NodoDoble x;
-        int i, j, k;
+        int k;
         String aux1, aux2;
         List ain, apos;
         if (in.isEmpty()) {

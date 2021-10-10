@@ -33,5 +33,9 @@ public class ArbolControlador {
     public Lienzo getLienzo() {
         return lienzo;
     }
+
+    public ArbolBinario getArbol() {
+        return arbol;
+    }
     
 }

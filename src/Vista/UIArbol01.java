@@ -7,7 +7,10 @@ package Vista;
 
 import Controlador.ArbolControlador;
 import Modelo.ArbolBinario;
+import Negocio.ArbolNegocio;
 import java.awt.Toolkit;
+import javax.swing.Icon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +45,7 @@ public class UIArbol01 extends javax.swing.JFrame {
         buttonInPre = new javax.swing.JButton();
         buttonCInPos = new javax.swing.JButton();
         labelFirma = new javax.swing.JLabel();
+        Logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Segunda Práctica - Lógica 3");
@@ -51,6 +55,7 @@ public class UIArbol01 extends javax.swing.JFrame {
 
         enunciado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         enunciado.setForeground(new java.awt.Color(0, 0, 0));
+        enunciado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         enunciado.setText("Elige la forma de ingresar el árbol binario:");
 
         buttonCantiNodos.setBackground(new java.awt.Color(102, 255, 102));
@@ -90,36 +95,45 @@ public class UIArbol01 extends javax.swing.JFrame {
         });
 
         labelFirma.setForeground(new java.awt.Color(0, 51, 0));
+        labelFirma.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         labelFirma.setText("John Rodriguez y Sofia Vanegas - Segunda Práctica - Lógica 3");
+
+        Logo.setBackground(new java.awt.Color(204, 255, 204));
+        Logo.setForeground(new java.awt.Color(204, 255, 204));
+        Logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/Logo.png"))); // NOI18N
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonInPre, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
-                    .addComponent(buttonString, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonCantiNodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonCInPos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(78, 78, 78))
             .addGroup(panelLayout.createSequentialGroup()
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(enunciado, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(enunciado))
+                        .addContainerGap()
+                        .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(labelFirma)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(labelFirma, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(panelLayout.createSequentialGroup()
+                .addGap(74, 74, 74)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(buttonInPre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonString, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonCantiNodos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonCInPos, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(Logo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(enunciado)
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addComponent(buttonCantiNodos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonString, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,10 +141,12 @@ public class UIArbol01 extends javax.swing.JFrame {
                 .addComponent(buttonInPre, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonCInPos, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
                 .addComponent(labelFirma)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
+
+        Logo.getAccessibleContext().setAccessibleName("Logo");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,52 +163,96 @@ public class UIArbol01 extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonCantiNodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCantiNodosActionPerformed
-//        ArbolNegocio negocio = new ArbolNegocio();
-//        
-//        try{
-//            n = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Elige un número de nodos (Mín: 1, Max: 20)", "Cantidad de nodos", 3));
-//            if (!negocio.verificarCantidadNodos(n)){
-//                JOptionPane.showMessageDialog(rootPane, "El número no es válido.");
-//                return;
-//            }
-//        }
-//        catch(NumberFormatException e){
-//            JOptionPane.showMessageDialog(rootPane, "Por favor coloque valores númericos válidos", "Error", 2);
-//            return;
-//        }        
-//        int f = JOptionPane.showConfirmDialog(rootPane, "¿Quiere identificar los nodos con letras?");
-//        switch(f){
-//            //si
-//            case 0:
-//                arbol.ConstruyeArbolBinario1(n, true);
-//                break;
-//            //no
-//            case 1:
-//                arbol.ConstruyeArbolBinario1(n, false);
-//                break;
-//            case 2:
-//                return;
-//        }
-
-        arbol.ConstruyeArbolBinario1(size, true);
+        ArbolNegocio negocio = new ArbolNegocio();
+        int n;
+        try {
+            n = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Elige un número de nodos (Mín: 1, Max: 20): ", "Cantidad de nodos", 3));
+            if (!negocio.verificarCantidadNodos(n)) {
+                JOptionPane.showMessageDialog(rootPane, "El número no es válido.");
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(rootPane, "Por favor coloque valores númericos válidos.", "Error", 2);
+            return;
+        } catch (NullPointerException e) {
+            return;
+        }
+        int f = 3;
+        try {
+            f = JOptionPane.showConfirmDialog(rootPane, "¿Quiere identificar los nodos con letras?");
+        } catch (NullPointerException e) {
+            return;
+        }
+        switch (f) {
+            //si
+            case 0:
+                arbol.ConstruyeArbolBinario1(n, true);
+                break;
+            //no
+            case 1:
+                arbol.ConstruyeArbolBinario1(n, false);
+                break;
+            case 2:
+                return;
+            default:
+                return;
+        }
         lienzo();
     }//GEN-LAST:event_buttonCantiNodosActionPerformed
 
     private void buttonStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonStringActionPerformed
-        //String arbolB = JOptionPane.showInputDialog(rootPane, "Ingrese los nombres de los nodos separados por comas (Max: 25 nodos)", "Nodos separados por comas", 3);
+        ArbolNegocio negocio = new ArbolNegocio();
+        String arbolB = "";
+        try {
+            arbolB = JOptionPane.showInputDialog(rootPane, "Ingrese los nombres de los nodos separados por comas (Una letra o número por cada nodo) (Max: 20 nodos): ", "Nodos separados por comas", 3);
+
+        } catch (Exception e) {
+            return;
+        }        
         arbol.ConstruyeArbolBinario2(arbolB);
         lienzo();
-
+        if(negocio.verificarLongitud(arbolB)){
+            arbol.ConstruyeArbolBinario2(arbolB);
+            lienzo();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");            
+        }
     }//GEN-LAST:event_buttonStringActionPerformed
 
     private void buttonCInPosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCInPosActionPerformed
-        arbol.construyeInPos(in, pos);
-        lienzo();
+        ArbolNegocio negocio = new ArbolNegocio();
+        String in = "";
+        String pos = "";
+        try {
+            in = JOptionPane.showInputDialog(rootPane, "Ingresa el recorrido inorden del arbol: ", "InOrden", 3);
+            pos = JOptionPane.showInputDialog(rootPane, "Ingresa el recorrido posorden del arbol: ", "PosOrden", 3);
+        } catch (Exception e) {
+            return;
+        }
+        if(negocio.verificarLongitud(in, pos)){
+            arbol.construyeInPos(in, pos);
+            lienzo();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");            
+        }
     }//GEN-LAST:event_buttonCInPosActionPerformed
 
     private void buttonInPreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonInPreActionPerformed
-        arbol.construyeInPre(in, pre);
-        lienzo();
+        ArbolNegocio negocio = new ArbolNegocio();
+        String in = "";
+        String pre = "";
+        try {
+            in = JOptionPane.showInputDialog(rootPane, "Ingresa el recorrido inorden del arbol: ", "InOrden", 3);
+            pre = JOptionPane.showInputDialog(rootPane, "Ingresa el recorrido preorden del arbol: ", "PreOrden", 3);
+        } catch (Exception e) {
+            return;
+        }
+        if(negocio.verificarLongitud(in, pre)){
+            arbol.construyeInPre(in, pre);
+            lienzo();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No fue posible generar el arbol.");            
+        }        
     }//GEN-LAST:event_buttonInPreActionPerformed
 
     /**
@@ -232,29 +292,24 @@ public class UIArbol01 extends javax.swing.JFrame {
             }
         });
     }
-    
-    
+
     public void setControl(ArbolControlador control) {
         this.control = control;
     }
-        
-    public void lienzo() {        
+
+    public void lienzo() {
         UIArbol02 lienzo = new UIArbol02();
         lienzo.setControl(control);
         lienzo.dibujarArbol();
         lienzo.setVisible(true);
         this.setVisible(false);
     }
-    
-    String in = "G,H,O,Q,R,T,X";
-    String pos = "H,O,R,Q,X,T,G";
-    String pre = "G,T,Q,O,H,R,X";
-    String arbolB = "k,j,b,i,h,g,a,c,e,d,f";
-    int size = 20;
+
     private ArbolBinario arbol; //MODELO
     private Lienzo lienzo; //PANEL-ARBOL
     private ArbolControlador control; //CONTROLADOR
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Logo;
     private javax.swing.JButton buttonCInPos;
     private javax.swing.JButton buttonCantiNodos;
     private javax.swing.JButton buttonInPre;

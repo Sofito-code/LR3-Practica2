@@ -16,22 +16,29 @@ import java.util.Queue;
 public class ArbolNegocio {
 
     public ArbolNegocio() {
-    }   
-    
-    public boolean verificarCantidadNodos(int n){
-        if(n > 0 && n <= 20){
-            return true;
-        }
-        return false;        
     }
-    
-    public boolean verificarLongitud(String x){
-        Queue<String> cola = new LinkedList();
-        cola.addAll(Arrays.asList(x.split(",")));
-        if (cola.size() >= 25){
+
+    public boolean verificarCantidadNodos(int n) {
+        if (n > 0 && n <= 20) {
             return true;
         }
         return false;
     }
-    
+
+    public boolean verificarLongitud(String x) {
+        Queue<String> cola = new LinkedList();
+        cola.addAll(Arrays.asList(x.split(",")));
+        if (cola.size() >= 20) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean verificarLongitud(String s1, String s2) {
+        if (s1.length() == s2.length()) {
+            return true;
+        }
+        return false;
+    }
+
 }

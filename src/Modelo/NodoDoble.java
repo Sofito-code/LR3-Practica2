@@ -13,6 +13,11 @@ public class NodoDoble {
         ligaIzquierda = ligaDerecha = null;
         dato = d;
     }
+
+    @Override
+    public String toString() {
+        return String.valueOf(dato);
+    }
     
     /**
      * Este método verifica si un nodo es completo, osea si tiene hijo izquierdo y derecho.
