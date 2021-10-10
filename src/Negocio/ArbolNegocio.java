@@ -18,13 +18,13 @@ import java.util.Queue;
 public class ArbolNegocio {
 
     /**
-     * Verifica que el usuario ingrese un número entero entre 1 y 20.
+     * Verifica que el usuario ingrese un número entero entre 1 y 15.
      * 
      * @param n es el número ingresado por el usuario.
      * @return true si cumple con el rango numérico o false si no cumple.
      */
     public boolean verificarCantidadNodos(int n) {
-        if (n > 0 && n <= 20) {
+        if (n > 0 && n <= 15) {
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ public class ArbolNegocio {
     public boolean verificarLongitud(String x) {
         Queue<String> cola = new LinkedList();
         cola.addAll(Arrays.asList(x.split(",")));
-        if (cola.size() >= 20) {
+        if (cola.size() >= 15) {
             return true;
         }
         return false;
@@ -53,7 +53,11 @@ public class ArbolNegocio {
      * @return true si cumple con que ambos Strings tienen la misma longitud o false si no cumple.
      */
     public boolean verificarLongitud(String s1, String s2) {
-        if (s1.length() == s2.length()) {
+        Queue<String> cola1 = new LinkedList();
+        cola1.addAll(Arrays.asList(s1.split(",")));
+        Queue<String> cola2 = new LinkedList();
+        cola2.addAll(Arrays.asList(s2.split(",")));
+        if (cola1.size() == cola2.size() && (cola1.size() > 0 && cola1.size() <= 15)) {
             return true;
         }
         return false;

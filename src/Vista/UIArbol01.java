@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class UIArbol01 extends javax.swing.JFrame {
 
-    public UIArbol01() {
+    public UIArbol01() {        
         arbol = new ArbolBinario();
         lienzo = new Lienzo();
         control = new ArbolControlador(arbol, lienzo);
@@ -164,7 +164,7 @@ public class UIArbol01 extends javax.swing.JFrame {
         ArbolNegocio negocio = new ArbolNegocio();
         int n;
         try {
-            n = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Elige un número de nodos (Mín: 1, Max: 20): ", "Cantidad de nodos", 3));
+            n = Integer.parseInt(JOptionPane.showInputDialog(rootPane, "Elige un número de nodos (Mín: 1, Max: 15): ", "Cantidad de nodos", 3));
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane, "Por favor coloque valores númericos válidos.", "Error", 2);
             return;
@@ -202,7 +202,7 @@ public class UIArbol01 extends javax.swing.JFrame {
         ArbolNegocio negocio = new ArbolNegocio();
         String arbolB = "";
         try {
-            arbolB = JOptionPane.showInputDialog(rootPane, "Ingrese los nombres de los nodos separados por comas (Una letra o número por cada nodo) (Max: 20 nodos): ", "Nodos separados por comas", 3);
+            arbolB = JOptionPane.showInputDialog(rootPane, "Ingrese los nombres de los nodos separados por comas (Una letra o número por cada nodo) (Max: 15 nodos): ", "Nodos separados por comas", 3);
 
         } catch (Exception e) {
             return;
