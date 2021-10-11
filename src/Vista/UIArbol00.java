@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author Sofito-Chan
@@ -16,6 +18,8 @@ public class UIArbol00 extends javax.swing.JFrame {
      */
     public UIArbol00() {
         initComponents();
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("codeIcon.png")));
+
     }
 
     /**
